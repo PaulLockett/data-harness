@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 2,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": [],
+  "notes": "Pure stdlib JSON parse. Captured fixture is ~175 KB total (165 KB submissions.json + 9 KB filing_index.json). Capture-time uses httpx with a real User-Agent header (SEC's accessing-edgar-data policy requires identifying contact info)."
+}

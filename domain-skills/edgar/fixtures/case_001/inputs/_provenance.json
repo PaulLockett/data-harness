@@ -1,0 +1,18 @@
+{
+  "target_cik": "0000320193",
+  "target_company_name": "Apple Inc.",
+  "target_ticker": "AAPL",
+  "target_exchange": "Nasdaq",
+  "target_sic": "3571",
+  "target_state_of_incorporation": "CA",
+  "target_ein": "942404110",
+  "target_filing_form": "10-K",
+  "target_filing_accession": "0000320193-25-000079",
+  "target_filing_date": "2025-10-31",
+  "target_primary_document": "aapl-20250927.htm",
+  "target_notes": "Apple Inc. — CIK 0000320193, EIN 94-2404110, ticker AAPL on Nasdaq. SIC 3571 = 'Electronic Computers' (BLS classification). Incorporated in California. Captured the entity-level submissions index (data.sec.gov/submissions/) plus the index.json for the FY2025 10-K (accession 0000320193-25-000079, filed 2025-10-31, primary document aapl-20250927.htm — fiscal year ending 2025-09-27).",
+  "captured_at_utc": "2026-04-27T02:25:00Z",
+  "captured_from": "https://data.sec.gov/submissions/CIK0000320193.json",
+  "capture_method": "GET data.sec.gov/submissions/CIK0000320193.json (165 KB) for the company-level filing-history record. Then GET www.sec.gov/Archives/edgar/data/320193/000032019325000079/index.json (9 KB) for the latest 10-K's filing-document directory listing. Both endpoints are no-auth public; SEC requires a real User-Agent string per https://www.sec.gov/os/accessing-edgar-data. No XBRL or 10-K HTML body persisted in v0; case_002 may add the primary document.",
+  "files": ["submissions.json", "filing_index.json"]
+}
