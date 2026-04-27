@@ -7,28 +7,246 @@
       "state": "AL"
     },
     "operator": "INTERNATIONAL PAPER COMPANY",
-    "primary_media": "Multi"
+    "primary_media": "Air"
   },
   "permits": [
-    {"permit_number": "104-0003", "media_type_code": "STR"},
-    {"permit_number": "24-06",    "media_type_code": "MONR"}
+    {
+      "permit_number": "104-0003",
+      "media_type_code": "Title V Air"
+    }
   ],
   "recent_documents": [
     {
       "date": "2026-04-14",
       "type": "STR",
       "permit_number": "104-0003",
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105828118&dbid=0",
-      "file_name": "6298 104-0003 STR 04-14-2026.pdf"
+      "laserfiche_docid": "105888340",
+      "file_name": "6298 104-0003 047 04-14-2026 STR SPB PB3 RATA ADR",
+      "file_path": "documents/6298_104-0003_047_04-14-2026_STR_SPB_PB3_RATA_ADR.pdf",
+      "sha256_prefix": "ac1164c28d1aad06",
+      "n_pages": 9,
+      "size_bytes": 394318,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105888340&dbid=0",
+      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
+      "text_matches": [],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
     },
     {
-      "date": "2026-04-13",
+      "date": "2026-03-18",
+      "type": "MACT",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105877362",
+      "file_name": "6298 104-0003 047 03-18-2026 MACT SPB 1Q2026 COND TEST ADR",
+      "file_path": "documents/6298_104-0003_047_03-18-2026_MACT_SPB_1Q2026_COND_TEST_ADR.pdf",
+      "sha256_prefix": "0a034c7dc5e8c5ad",
+      "n_pages": 1,
+      "size_bytes": 481555,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877362&dbid=0",
+      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) March 18, 2026",
+      "text_matches": [
+        "6298",
+        "Selma",
+        "Riverdale",
+        "104-0003"
+      ],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-03-17",
+      "type": "STR",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105868174",
+      "file_name": "6298 104-0003 047 03-17-2026 STR SPB NO 2 BB PM, CO, SO2 & RATA ADR",
+      "file_path": "documents/6298_104-0003_047_03-17-2026_STR_SPB_NO_2_BB_PM__CO__SO2___RATA_ADR.pdf",
+      "sha256_prefix": "97328be723a50e33",
+      "n_pages": 10,
+      "size_bytes": 413715,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868174&dbid=0",
+      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
+      "text_matches": [],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-03-16",
+      "type": "CORS",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105868172",
+      "file_name": "6298 104-0003 047 03-16-2026 CORS SPB 3RD ANN NO 2 BB PSD RPT ADR",
+      "file_path": "documents/6298_104-0003_047_03-16-2026_CORS_SPB_3RD_ANN_NO_2_BB_PSD_RPT_ADR.pdf",
+      "sha256_prefix": "3dbc32a89695572c",
+      "n_pages": 1,
+      "size_bytes": 482897,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868172&dbid=0",
+      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) March 16, 2026",
+      "text_matches": [
+        "6298",
+        "Selma",
+        "Riverdale",
+        "104-0003"
+      ],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-03-16",
+      "type": "T5ACC",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105868173",
+      "file_name": "6298 104-0003 047 03-16-2026 T5ACC SPB 2025 ACC ADR",
+      "file_path": "documents/6298_104-0003_047_03-16-2026_T5ACC_SPB_2025_ACC_ADR.pdf",
+      "sha256_prefix": "f542a063396e35ab",
+      "n_pages": 1,
+      "size_bytes": 484015,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868173&dbid=0",
+      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) March 16, 2026",
+      "text_matches": [
+        "6298",
+        "Selma",
+        "Riverdale",
+        "104-0003"
+      ],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-03-12",
+      "type": "MACT",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105877361",
+      "file_name": "6298 104-0003 047 03-12-2026 MACT MOG 1Q2026 COND TEST RPT",
+      "file_path": "documents/6298_104-0003_047_03-12-2026_MACT_MOG_1Q2026_COND_TEST_RPT.pdf",
+      "sha256_prefix": "81f4d283e774b34c",
+      "n_pages": 70,
+      "size_bytes": 2016365,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877361&dbid=0",
+      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
+      "text_matches": [],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-03-06",
+      "type": "CORR",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105864398",
+      "file_name": "6298 104-0003 047 03-06-2026 CORR SPB INVENTORY QUESTIONS",
+      "file_path": "documents/6298_104-0003_047_03-06-2026_CORR_SPB_INVENTORY_QUESTIONS.pdf",
+      "sha256_prefix": "d923f9599452e4d2",
+      "n_pages": 2,
+      "size_bytes": 950888,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105864398&dbid=0",
+      "text_excerpt": "1 Bissey, Steven From: Frederick Francis <frederick.francis@ipaper.com> Sent: Friday, March 6, 2026 3:11 PM To: Bissey, Steven Cc: Kelly M. Simmons; Shelly Pruden Subject: RE: [External] :Inventory Questions Attachments: Inventory Response (3.5.24) to ADEM.xlsx Answers below, along with attached spr",
+      "text_matches": [
+        "Selma",
+        "Riverdale"
+      ],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-02-26",
       "type": "MONR",
-      "permit_number": "24-06",
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105828119&dbid=0",
-      "file_name": "6298 24-06 MONR 04-13-2026.pdf"
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105877359",
+      "file_name": "6298 104-0003 047 02-26-2026 MONR MOG 3RD BB2 PSD TRACKING RPT",
+      "file_path": "documents/6298_104-0003_047_02-26-2026_MONR_MOG_3RD_BB2_PSD_TRACKING_RPT.pdf",
+      "sha256_prefix": "b100a6818255c7f4",
+      "n_pages": 6,
+      "size_bytes": 412111,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877359&dbid=0",
+      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
+      "text_matches": [],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-02-26",
+      "type": "T5ACC",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105877360",
+      "file_name": "6298 104-0003 047 02-26-2026 T5ACC MOG 2025 ACC RPT",
+      "file_path": "documents/6298_104-0003_047_02-26-2026_T5ACC_MOG_2025_ACC_RPT.pdf",
+      "sha256_prefix": "d4f49f79c8724e0d",
+      "n_pages": 136,
+      "size_bytes": 5850218,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877360&dbid=0",
+      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
+      "text_matches": [],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
+    },
+    {
+      "date": "2026-02-24",
+      "type": "CEMS",
+      "permit_number": "104-0003",
+      "laserfiche_docid": "105853632",
+      "file_name": "6298 104-0003 047 02-24-2026 CEMS SPB 4Q2025 EE RPT ADR",
+      "file_path": "documents/6298_104-0003_047_02-24-2026_CEMS_SPB_4Q2025_EE_RPT_ADR.pdf",
+      "sha256_prefix": "9eff4ceb6ab86f0b",
+      "n_pages": 1,
+      "size_bytes": 485054,
+      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105853632&dbid=0",
+      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) February 24, 20",
+      "text_matches": [
+        "6298",
+        "Selma",
+        "Riverdale",
+        "104-0003"
+      ],
+      "filename_matches": [
+        "6298",
+        "104-0003"
+      ],
+      "validated": true
     }
   ],
   "captured_from": "https://app.adem.alabama.gov/eFile/Default.aspx",
-  "captured_at_utc": "2026-04-26T22:36:00Z"
+  "captured_at_utc": "2026-04-27T00:00:00Z",
+  "capture_method": "permit=104-0003 search on eFile + browser-side fetch on lf.adem.alabama.gov ElectronicFile.aspx; PDFs parsed with pypdf and verified to contain Riverdale identifier in filename and/or first 10 pages of text",
+  "validation": {
+    "all_validated": true,
+    "n_text_matches": 5,
+    "n_filename_matches": 10,
+    "n_documents": 10,
+    "target_identifiers": [
+      "INTERNATIONAL PAPER",
+      "6298",
+      "DALLAS",
+      "Selma",
+      "SELMA",
+      "RIVERDALE",
+      "Riverdale",
+      "104-0003"
+    ]
+  }
 }

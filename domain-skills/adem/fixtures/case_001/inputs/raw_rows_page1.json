@@ -1,0 +1,112 @@
+[
+  {
+    "master_id": "Master ID",
+    "name": "Name",
+    "permit": "Permit Number",
+    "county": "County",
+    "date": "Date",
+    "type": "Type",
+    "file_name": "File Name",
+    "download_url": null
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "04/14/2026",
+    "type": "STR",
+    "file_name": "6298 104-0003 047 04-14-2026 STR SPB PB3 RATA ADR",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105888340&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "03/18/2026",
+    "type": "MACT",
+    "file_name": "6298 104-0003 047 03-18-2026 MACT SPB 1Q2026 COND TEST ADR",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877362&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "03/17/2026",
+    "type": "STR",
+    "file_name": "6298 104-0003 047 03-17-2026 STR SPB NO 2 BB PM, CO, SO2 & RATA ADR",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868174&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "03/16/2026",
+    "type": "CORS",
+    "file_name": "6298 104-0003 047 03-16-2026 CORS SPB 3RD ANN NO 2 BB PSD RPT ADR",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868172&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "03/16/2026",
+    "type": "T5ACC",
+    "file_name": "6298 104-0003 047 03-16-2026 T5ACC SPB 2025 ACC ADR",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868173&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "03/12/2026",
+    "type": "MACT",
+    "file_name": "6298 104-0003 047 03-12-2026 MACT MOG 1Q2026 COND TEST RPT",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877361&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "03/06/2026",
+    "type": "CORR",
+    "file_name": "6298 104-0003 047 03-06-2026 CORR SPB INVENTORY QUESTIONS",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105864398&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "02/26/2026",
+    "type": "MONR",
+    "file_name": "6298 104-0003 047 02-26-2026 MONR MOG 3RD BB2 PSD TRACKING RPT",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877359&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "02/26/2026",
+    "type": "T5ACC",
+    "file_name": "6298 104-0003 047 02-26-2026 T5ACC MOG 2025 ACC RPT",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877360&dbid=0"
+  },
+  {
+    "master_id": "6298",
+    "name": "INTERNATIONAL PAPER COMPANY",
+    "permit": "104-0003",
+    "county": "DALLAS",
+    "date": "02/24/2026",
+    "type": "CEMS",
+    "file_name": "6298 104-0003 047 02-24-2026 CEMS SPB 4Q2025 EE RPT ADR",
+    "download_url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105853632&dbid=0"
+  }
+]
