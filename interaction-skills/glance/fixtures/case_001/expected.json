@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.kind", "type": "string", "in_set": ["DataFrame", "Series", "ndarray", "Image", "Graph", "HDUList", "Zarr", "dict", "list"]},
+    {"path": "$.n_rows", "type": "int", "in_range": [3, 100000]},
+    {"path": "$.n_cols", "type": "int", "in_range": [2, 200]},
+    {"path": "$.columns", "type": "list", "min_size": 2, "max_size": 200},
+    {"path": "$.schema", "type": "object", "key_set_includes": ["x", "y", "label"]},
+    {"path": "$.nulls", "type": "object", "key_set_includes": ["x", "y", "label"]},
+    {"path": "$.summary_str", "type": "string", "min_length": 30, "max_length": 5000, "regex": "^pl\\.DataFrame"},
+    {"path": "$", "type": "object", "key_set_includes": ["kind", "n_rows", "n_cols", "columns", "schema", "nulls", "summary_str"]}
+  ]
+}

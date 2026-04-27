@@ -80,9 +80,29 @@ def _check_predicate(values: list, pred: dict) -> tuple[bool, str]:
 
 
 _TYPE_MAP = {
-    "string": str, "int": int, "float": (int, float), "list": list, "object": dict,
+    "string": str, "int": int, "float": (int, float), "bool": bool,
+    "list": list, "object": dict,
     "list[string]": list, "list[object]": list, "list[int]": list, "list[float]": list,
 }
+
+
+def _run_skill_output(skill_dir: Path, inputs_dir: Path):
+    """If <skill_dir>/skill.py exists with run(inputs_dir) → dict, return its output.
+    Else return None (caller falls back to identity-load of inputs/record.json).
+    """
+    skill_py = skill_dir / "skill.py"
+    if not skill_py.exists():
+        return None
+    import importlib.util, sys as _sys
+    here = str(Path(__file__).resolve().parent)
+    if here not in _sys.path:
+        _sys.path.insert(0, here)
+    spec = importlib.util.spec_from_file_location(f"_skill_{skill_dir.name}", skill_py)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    if not hasattr(mod, "run"):
+        return None
+    return mod.run(inputs_dir)
 
 
 def _check_one(v: Any, pred: dict) -> tuple[bool, str]:
@@ -153,16 +173,19 @@ def _run_case(case_dir: Path, c) -> tuple[str, str]:
     ok, why = _trivial_predicate_linter(predicates)
     if not ok:
         return "fail", f"trivial-predicate linter: {why}"
-    # v0: identity-transform — load inputs/record.json (or single .json file in inputs/) as the output.
+    # If <skill>/skill.py exists, run it on inputs/ to produce the output.
+    # Else fall back to identity-load of inputs/record.json (or first .json there).
     inputs = case_dir / "inputs"
-    candidate = inputs / "record.json"
-    if not candidate.exists():
-        # try single json/jsonl/parquet file
-        jsons = list(inputs.glob("*.json")) if inputs.exists() else []
-        if not jsons:
-            return "fail", "no inputs/record.json (and no other .json) — Phase 2a identity-only"
-        candidate = jsons[0]
-    output = _load(candidate)
+    skill_dir = case_dir.parent.parent  # case_001 → fixtures/ → <skill>/
+    output = _run_skill_output(skill_dir, inputs)
+    if output is None:
+        candidate = inputs / "record.json"
+        if not candidate.exists():
+            jsons = list(inputs.glob("*.json")) if inputs.exists() else []
+            if not jsons:
+                return "fail", f"no skill.py and no inputs/*.json in {inputs}"
+            candidate = jsons[0]
+        output = _load(candidate)
     for p in predicates:
         path = p.get("path", "$")
         values = _jsonpath(output, path)

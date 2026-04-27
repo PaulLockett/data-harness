@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.metric", "type": "string", "in_set": ["psi", "ks", "jsd", "quantile_shift", "tvd"]},
+    {"path": "$.score", "type": "float", "in_range": [0, 100]},
+    {"path": "$.alarm", "type": "bool"},
+    {"path": "$.by_column", "type": "object", "key_set_includes": ["x"]},
+    {"path": "$", "type": "object", "key_set_includes": ["metric", "score", "alarm", "by_column"]}
+  ]
+}

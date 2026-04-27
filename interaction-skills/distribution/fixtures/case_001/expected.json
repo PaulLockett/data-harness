@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.column", "type": "string", "in_set": ["x", "y", "value", "score", "amount"]},
+    {"path": "$.n", "type": "int", "in_range": [10, 1000000]},
+    {"path": "$.mean", "type": "float"},
+    {"path": "$.std", "type": "float", "in_range": [0, 1000000000]},
+    {"path": "$.min", "type": "float"},
+    {"path": "$.max", "type": "float"},
+    {"path": "$.p50", "type": "float"},
+    {"path": "$.p95", "type": "float"},
+    {"path": "$.histogram", "type": "list", "min_size": 10, "max_size": 10},
+    {"path": "$.histogram[*]", "type": "int", "in_range": [0, 1000000], "for_all": true},
+    {"path": "$", "type": "object", "key_set_includes": ["column", "n", "mean", "std", "min", "max", "p50", "p95", "histogram"]}
+  ]
+}
