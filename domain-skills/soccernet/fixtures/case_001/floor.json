@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 1,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": [],
+  "notes": "Pure stdlib. Captured fixture is ~6.4 KB (4 small text files). case_001 is intentionally a schema-only fixture: SoccerNet's video corpus + per-game annotation JSONs are gated behind the soccer-net.org NDA-style download flow with password authentication, outside v0 scope. case_002+ may add a real annotated game when that path is wired."
+}

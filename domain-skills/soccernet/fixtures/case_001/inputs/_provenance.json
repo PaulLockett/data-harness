@@ -1,0 +1,14 @@
+{
+  "target_dataset": "SoccerNet-v2",
+  "target_task": "action-spotting",
+  "target_n_primary_classes": 17,
+  "target_primary_classes_subset": ["Penalty", "Kick-off", "Goal", "Substitution", "Offside", "Shots on target", "Shots off target", "Clearance", "Ball out of play", "Throw-in", "Foul", "Indirect free-kick", "Direct free-kick", "Corner", "Yellow card", "Red card", "Yellow->red card"],
+  "target_team_classes": ["not applicable", "home", "away"],
+  "target_visibility_classes": ["not applicable", "visible", "not shown"],
+  "target_splits": ["train", "valid", "test", "challenge"],
+  "target_notes": "SoccerNet is a research dataset of 500+ full soccer matches with action-spotting, replay-grounding, and player-tracking annotations (Giancola et al. CVPR 2018; Cioppa et al. CVPR 2022). The full dataset is hundreds of GB of video; annotations require accepting an NDA and using the SoccerNet Downloader with a password. case_001 captures only the public schema files from the sn-spotting GitHub repo: the 17 action class labels, 3 team-affiliation labels, 3 visibility labels, and the canonical splits enum from SoccerNet/utils.py. case_002 may add a real annotated game once the gated download path is wired.",
+  "captured_at_utc": "2026-04-27T02:50:00Z",
+  "captured_from": "https://raw.githubusercontent.com/SoccerNet/sn-spotting/main/Annotation/config/classes.txt",
+  "capture_method": "GET 4 raw GitHub files: classes.txt (17 action classes + 'I don't know'), second_classes.txt (team affiliation), third_classes.txt (visibility), and utils.py (canonical splits list). Total persisted ~6.4 KB. The video corpus + annotation JSONs are gated behind soccer-net.org's NDA-style download flow with password authentication; this fixture validates schema-level invariants only.",
+  "files": ["classes.txt", "second_classes.txt", "third_classes.txt", "utils.py"]
+}
