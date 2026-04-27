@@ -1,22 +1,4 @@
-"""data-harness — substrate primitives across 10 tiers + capability-derived helpers.
-
-Self-imposed cap: keep this file ≤900 lines so the substrate stays
-reviewable end-to-end. Heavy deps (torch, transformers, astropy, zarr)
-are imported lazily inside primitives so import cost stays cheap and
-the daemon cold-starts in <1s without loading torch.
-
-Tier 1   compute / IO
-Tier 2   tabular spine (DuckDB + Polars)
-Tier 3   decoders (PDF, images, video, audio, FITS, Zarr) — many stubbed for v0
-Tier 4   foundation models (one-liner wrappers around models.resolve)
-Tier 5   math / optimization (re-exports + a few helpers)
-Tier 6   orchestration (cache_by_hash, checkpoint, budget(), provenance_log, diff_artifact)
-Tier 7   geospatial — stubbed for v0
-Tier 8   graph — stubbed for v0
-Tier 9   vector — partially stubbed for v0
-Tier 10  streaming — stubbed for v0
-Plus glance() (verification primitive) and capability-derived helpers.
-"""
+"""Substrate primitives + capability-derived helpers. Read, edit, extend -- this file is yours."""
 from __future__ import annotations
 
 import json

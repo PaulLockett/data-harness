@@ -1,9 +1,4 @@
-"""data-harness daemon — long-running Python process holding shared state.
-
-Owns the DuckDB connection, lazy model clients, the Atomic[Capabilities]
-reference, and the adaptivity loop. Cold-start <1s — never imports torch
-or downloads weights at startup.
-"""
+"""DuckDB conn + lazy model clients + Atomic[Capabilities] holder. One daemon per DH_NAME."""
 from __future__ import annotations
 
 import json
