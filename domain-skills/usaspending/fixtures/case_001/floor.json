@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 2,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": [],
+  "notes": "Pure JSON parse via stdlib json. The award-detail JSON is ~8.5 KB; runtime memory < 50 MB. No GPU, no API key, no foundation models. Capture-time depends on api.usaspending.gov availability but runtime depends only on the saved award.json."
+}

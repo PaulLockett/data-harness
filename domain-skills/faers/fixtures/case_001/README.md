@@ -66,15 +66,29 @@ Total: ~3 KB on disk.
 | Reactions | Priapism, Drug withdrawal syndrome, Tremor, Self-destructive behaviour, Psychotic symptom, Borderline personality disorder, Alcoholism, Suicide attempt, Influenza like illness, Food craving, ... (16 total) | `pt min_length 2` for_all |
 | Outcomes | OT (other), HO (hospitalized) | `outc_cod in_set [DE,LT,HO,...]` for_all |
 
+## External-source citations (predicate provenance)
+
+| Predicate group | Source |
+|---|---|
+| 7-table `files` shape, `$`-delimited format, header-column lists | **FDA FAERS ASCII NTS specification** (`ASC_NTS.pdf`, included in every quarterly ZIP) |
+| FAERS code enums (`role_cod ∈ {PS,SS,C,I}`, `outc_cod ∈ {DE,LT,HO,DS,CA,RI,OT}`, `rept_cod ∈ {EXP,DIR,...}`, `age_cod ∈ {YR,MO,DY,...}`) | **FDA FAERS data dictionary** (in the `Readme.pdf` accompanying each release) |
+| Documented clozapine AE MedDRA Preferred Terms (`KNOWN_CLOZAPINE_AES` set in `skill.py`) | **FDA Clozaril prescribing information**, sections 6.1 (Adverse Reactions in Clinical Trials) and 6.2 (Postmarketing Experience), 2024 revision |
+| Country-code regex `^[A-Z]{2,3}$` | **ISO 3166-1 alpha-2 / -3** standard |
+| FDA date regex `^[0-9]{8}$` (YYYYMMDD) | **FAERS schema spec** |
+| Quarterly URL pattern `^https://fis\.fda\.gov/content/Exports/faers_ascii_` | **FDA Open Government — FAERS Quarterly Data Files** index page |
+| Identity values (drug name, primaryid, caseid) | **Search inputs** declared in `_provenance.json` |
+
 ## Spoof matrix
 
 | Mutation | Predicate that fails |
 |---|---|
-| `_provenance.json` `target_drug` → "ASPIRIN" | `target.drug_name in_set ["CLOZAPINE"]` fails first |
-| `_provenance.json` `target_primaryid` → "999999999" | `target.primaryid in_set ["215586863"]` fails; also `validation.all_files_keyed_by_target_primaryid` would become false |
+| `_provenance.json` `target_drug` → "ASPIRIN" | `target.drug_name in_set ["CLOZAPINE"]` fails first; even if that passed, `documented_drug_aes_present` would be empty after intersecting against the aspirin-AE label (different MedDRA terms), failing `min_size 1` |
+| `_provenance.json` `target_primaryid` → "999999999" | `target.primaryid in_set ["215586863"]` fails; also `validation.all_files_keyed_by_target_primaryid` becomes false |
 | Truncate `drug.txt` to header only | `drugs min_size 1` fails (no PS row found); `validation.target_drug_in_drug_table` would be false |
 | Replace `drug.txt` with rows where every `role_cod = 'C'` | `validation.target_drug_role_is_primary_suspect in_set [true]` fails |
 | Add a row with `primaryid = 'OTHER'` to `reac.txt` | `validation.all_files_keyed_by_target_primaryid in_set [true]` fails |
+| Rename a header column in any table (e.g. `pt → ptt` in REAC) | `reactions[*].pt min_length 2` fails on empty values; `validation.headers_match_fda_spec.REAC in_set [true]` would also fail |
+| Replace REAC body with non-clozapine PTs (e.g. only "Influenza like illness", "Food craving") | `validation.documented_drug_aes_present min_size 1` fails — captures the case where the data still has FAERS shape but doesn't pertain to clozapine |
 
 ## Why clozapine
 

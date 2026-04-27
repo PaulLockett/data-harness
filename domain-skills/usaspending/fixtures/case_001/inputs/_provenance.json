@@ -1,0 +1,13 @@
+{
+  "target_generated_unique_award_id": "CONT_AWD_80MSFC20C0034_8000_-NONE-_-NONE-",
+  "target_piid": "80MSFC20C0034",
+  "target_recipient_search": "SPACE EXPLORATION",
+  "target_recipient_name": "SPACE EXPLORATION TECHNOLOGIES CORP.",
+  "target_recipient_uei": "C6M7C2FLKER5",
+  "target_aliases": ["SpaceX", "SPACE EXPLORATION TECHNOLOGIES CORP.", "Space Exploration Technologies"],
+  "target_notes": "NASA's Human Landing System (HLS) Option A contract, awarded to SpaceX 2020-05-13 (announced 2021-04-16 after a court challenge from Blue Origin). Authoritative source on the contract whose Starship-derived lander will return crewed missions to the Moon under Artemis. ~$3.02 B obligated as of 2026-04-09. Award type D = Definitive Contract; PIID 80MSFC20C0034 (Marshall Space Flight Center prefix). Place of performance: Hawthorne, CA (SpaceX HQ).",
+  "captured_at_utc": "2026-04-27T01:15:00Z",
+  "captured_from": "https://api.usaspending.gov/api/v2/awards/CONT_AWD_80MSFC20C0034_8000_-NONE-_-NONE-/",
+  "capture_method": "POSTed /api/v2/search/spending_by_award/ filtered to recipient_search_text='SPACE EXPLORATION TECHNOLOGIES' + agencies.NASA + award_type_codes=A/B/C/D, sorted by Award Amount desc; picked the HLS contract from results page 1 (largest single non-IDIQ definitive contract). Then GET /api/v2/awards/<generated_internal_id>/ for the full detail JSON. ~8.5 KB persisted; no auth needed. JSON-API only — no browser-harness, no scraping, no ZIPs.",
+  "files": ["award.json"]
+}

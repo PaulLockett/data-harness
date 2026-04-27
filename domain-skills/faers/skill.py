@@ -22,6 +22,68 @@ from pathlib import Path
 from typing import Any
 
 
+# FAERS ASCII NTS schema (FDA-published spec, ASC_NTS.pdf accompanying every
+# quarterly release). Every quarter's tables MUST have these exact headers.
+# Treating these as externally-documented invariants — predicates assert
+# header equality so a schema change at FDA fails the case loudly.
+FAERS_HEADERS_FDA_SPEC: dict[str, list[str]] = {
+    "DEMO": ["primaryid", "caseid", "caseversion", "i_f_code",
+             "event_dt", "mfr_dt", "init_fda_dt", "fda_dt", "rept_cod",
+             "auth_num", "mfr_num", "mfr_sndr", "lit_ref", "age",
+             "age_cod", "age_grp", "sex", "e_sub", "wt", "wt_cod",
+             "rept_dt", "to_mfr", "occp_cod", "reporter_country",
+             "occr_country"],
+    "DRUG": ["primaryid", "caseid", "drug_seq", "role_cod", "drugname",
+             "prod_ai", "val_vbm", "route", "dose_vbm", "cum_dose_chr",
+             "cum_dose_unit", "dechal", "rechal", "lot_num", "exp_dt",
+             "nda_num", "dose_amt", "dose_unit", "dose_form", "dose_freq"],
+    "REAC": ["primaryid", "caseid", "pt", "drug_rec_act"],
+    "OUTC": ["primaryid", "caseid", "outc_cod"],
+    "RPSR": ["primaryid", "caseid", "rpsr_cod"],
+    "THER": ["primaryid", "caseid", "dsg_drug_seq", "start_dt", "end_dt",
+             "dur", "dur_cod"],
+    "INDI": ["primaryid", "caseid", "indi_drug_seq", "indi_pt"],
+}
+
+# MedDRA Preferred Terms documented as adverse reactions for clozapine
+# in the FDA-approved Clozaril prescribing information (2024 revision)
+# and in the WHO drug-class profile for atypical antipsychotics.
+# Source: FDA Clozaril label (Adverse Reactions sections 6.1, 6.2).
+# Used as an externally-documented set: a real clozapine AE report should
+# have at least one reaction PT that matches one of these labeled AEs.
+KNOWN_CLOZAPINE_AES: set[str] = {
+    # Cardiovascular
+    "Tachycardia", "Hypertension", "Hypotension",
+    "Orthostatic hypotension", "Myocarditis", "Pericarditis",
+    "Cardiomyopathy", "Cardiac arrest",
+    # Hematologic (black-box)
+    "Agranulocytosis", "Neutropenia", "Eosinophilia", "Leukopenia",
+    "Thrombocytopenia",
+    # Neurologic / Psychiatric
+    "Sedation", "Somnolence", "Dizziness", "Headache", "Insomnia",
+    "Tremor", "Akathisia", "Dystonia", "Rigidity",
+    "Seizure", "Convulsion", "Syncope",
+    "Suicide attempt", "Suicidal ideation", "Self-injurious ideation",
+    "Self-destructive behaviour", "Psychotic disorder",
+    "Psychotic symptom", "Drug withdrawal syndrome",
+    "Confusional state", "Delirium",
+    # Gastrointestinal
+    "Constipation", "Ileus", "Diarrhoea", "Nausea", "Vomiting",
+    "Hypersalivation", "Sialorrhoea", "Dry mouth",
+    "Hepatotoxicity", "Hepatitis",
+    # Metabolic
+    "Weight increased", "Hyperglycaemia", "Diabetes mellitus",
+    "Dyslipidaemia",
+    # Genitourinary
+    "Priapism", "Urinary retention", "Enuresis",
+    # Respiratory
+    "Pulmonary embolism", "Aspiration pneumonia",
+    # General
+    "Pyrexia", "Fatigue", "Asthenia", "Drug ineffective",
+    "Therapeutic response unexpected",
+}
+
+
 def _read_table(path: Path) -> tuple[list[dict], list[str], int, str]:
     """Read a $-delimited FAERS ASCII file into a list of dicts. Returns (rows, header, size_bytes, sha256_prefix)."""
     raw = path.read_bytes()
@@ -156,10 +218,29 @@ def run(inputs_dir: Path) -> dict:
         if not all_keyed:
             break
 
+    # Externally-documented invariant: each table's header must equal the
+    # FAERS ASCII NTS schema (FDA-published ASC_NTS.pdf). A schema drift at
+    # FDA or a mis-extracted file would fail this.
+    headers_match_fda_spec: dict[str, bool] = {
+        tname: parsed[tname][1] == FAERS_HEADERS_FDA_SPEC[tname]
+        for tname in FAERS_HEADERS_FDA_SPEC
+    }
+    all_headers_match_fda_spec = all(headers_match_fda_spec.values())
+
+    # Externally-documented invariant: a clozapine AE report should have at
+    # least one reaction PT that matches the FDA Clozaril label's documented
+    # adverse reactions. Captures the "is this report consistent with what
+    # the drug label says clozapine causes" check, which a wrong-target
+    # capture or a row-shuffled REAC table would fail.
+    captured_pts = {(r["pt"] or "").strip() for r in reactions}
+    documented_drug_aes_present = sorted(captured_pts & KNOWN_CLOZAPINE_AES)
+
     all_validated = bool(
         target_drug_in_drug_table
         and target_drug_role_is_primary_suspect
         and all_keyed
+        and all_headers_match_fda_spec
+        and len(documented_drug_aes_present) >= 1
         and report["primaryid"] == target_pid
         and (target_caseid == "" or report["caseid"] == target_caseid)
     )
@@ -187,6 +268,10 @@ def run(inputs_dir: Path) -> dict:
             "target_drug_in_drug_table":           target_drug_in_drug_table,
             "target_drug_role_is_primary_suspect": target_drug_role_is_primary_suspect,
             "all_files_keyed_by_target_primaryid": all_keyed,
+            "headers_match_fda_spec":              headers_match_fda_spec,
+            "all_headers_match_fda_spec":          all_headers_match_fda_spec,
+            "documented_drug_aes_present":         documented_drug_aes_present,
+            "n_documented_drug_aes_present":       len(documented_drug_aes_present),
             "n_files":                             len(files_meta),
             "n_drugs":                             len(drugs),
             "n_reactions":                         len(reactions),

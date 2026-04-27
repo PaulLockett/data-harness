@@ -111,24 +111,23 @@ narratives). No quoting. The first line is the header.
 
 ## Predicates (case_001)
 
-38 predicates enforce:
-- **Identity is clozapine + primaryid 215586863**: `target.drug_name
-  in_set ["CLOZAPINE"]`, `target.primaryid in_set ["215586863"]`,
-  `target.caseid in_set ["21558686"]`. A different drug or report would
-  fail immediately.
-- **Patient/report shape**: age numeric, sex in enum, country 2-3 letter
-  code, FDA dates 8-digit YYYYMMDD strings, rept_cod in the FAERS code
-  table, manufacturer non-empty.
-- **Drug table**: at least one drug, every `drug_seq` numeric, every
-  `role_cod` in `{PS,SS,C,I}`, every `drugname` non-empty.
-- **Reactions / outcomes**: at least one each, `outc_cod` in the
-  serious-outcomes vocabulary.
-- **Per-file shape (for_all over the seven tables)**: file path under
-  `extracted/`, sha256 16 hex chars (proves real bytes hashed), row count
-  in [0, 5000] (truncation/empty-padding caught), column count plausible.
-- **Validation rollup**: all four sub-flags `true`, `n_files == 7`,
-  `target_identifiers` non-trivial.
-- **`captured_from`** points at FDA FAERS quarterly URL pattern.
+46 predicates total. Provenance per predicate group:
+
+| Group | Predicate(s) | Source — how this could fail |
+|---|---|---|
+| **Identity** (5) | `target.drug_name in_set ["CLOZAPINE"]`, `target.primaryid in_set ["215586863"]`, `target.caseid in_set ["21558686"]`, `case_version` regex, `target` keyset | **External** — these are the search inputs. A different drug or report would fail; a corrupted target spec also fails. |
+| **Patient/report shape** (8) | age regex, age_cod / sex / rept_cod in_set, country regex, FDA dates regex, mfr_sndr min_length | **External (FAERS schema)** — code enums come from FDA's ASC_NTS spec; date regex from spec; country regex from ISO. Captured-data values must conform to schema-mandated formats. |
+| **Drug / Reaction / Outcome content** (7) | `drugs[*].role_cod in {PS,SS,C,I}`, `drugs[*].drug_seq` regex, `drugs[*].drugname min_length 1`, `reactions[*].pt min_length 2`, `outcomes[*].outc_cod in {DE,LT,HO,DS,CA,RI,OT}` | **External (FAERS schema)** — every value enum is FDA-published. A row-shuffled or broken-encoding capture fails. |
+| **Per-file shape** (5, all for_all) | `files min/max_size 7`, `files[*].table` in the seven-table set, `file_path` regex, `sha256_prefix` 16 hex, `n_rows in [0, 5000]`, `n_columns in [2, 50]` | **External (FAERS schema)** + **captured-data structural** — quarter must produce exactly seven $-delimited tables. |
+| **FDA-spec header conformance** (5) | `validation.all_headers_match_fda_spec in_set [true]`, plus per-table booleans for DEMO/DRUG/REAC/OUTC | **External (FDA ASC_NTS.pdf)** — every quarter's tables MUST have these exact column names. Schema drift at FDA OR a wrong-table extraction fails. |
+| **Documented-drug-AE intersection** (3) | `n_documented_drug_aes_present in_range [1,60]`, `documented_drug_aes_present min_size 1`, every entry `in_set` of FDA Clozaril label MedDRA PTs | **External (FDA Clozaril prescribing information, sections 6.1/6.2)** — the captured report's reactions must include at least one term from clozapine's labeled AE list. A wrong-target capture (e.g. an aspirin report) would have no overlap. |
+| **Validation rollup** (4 booleans + 4 counts) | `all_validated`, `target_drug_in_drug_table`, `target_drug_role_is_primary_suspect`, `all_files_keyed_by_target_primaryid` ∈ `{true}`; `n_files==7`; `target_identifiers min_size 2` | **Captured-data-only / belt-and-suspenders** — these mirror the skill's own validation flags. They're redundant with the strong external predicates above but make the failure message clearer when the data's wrong. |
+| **Capture URL + root keyset** (2) | `captured_from` regex `^https://fis\.fda\.gov/content/Exports/faers_ascii_`; root key_set_includes | **External** — locks the data to FDA's published URL pattern. |
+
+The strong **external** predicates (~28 of 46) would catch a wrong capture
+even if the skill's own validation flags were broken; the **captured-data-only**
+predicates (~12) are belt-and-suspenders. The case still passes if any
+non-load-bearing predicate is removed; it fails on any of the external ones.
 
 ## Future cases
 
