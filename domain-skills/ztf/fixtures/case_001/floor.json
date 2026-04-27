@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 2,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": ["fastavro"],
+  "notes": "fastavro is the standard Python Avro reader; the captured 5 alerts are ~50-67 KB each (~300 KB total). Runtime memory under 100 MB. Capture-time pulls a 9.5 MB compressed tar; that's transient and discarded after extraction. cutoutScience/cutoutTemplate/cutoutDifference fields contain FITS image bytes that are kept in the Avro file but not rendered in v0 — case_002+ may add an interaction-skill composition that decodes them."
+}

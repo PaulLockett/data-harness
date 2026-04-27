@@ -1,0 +1,12 @@
+{
+  "target_archive_url": "https://ztf.uw.edu/alerts/public/ztf_public_20230220.tar.gz",
+  "target_observation_night_utc": "20230220",
+  "target_schemavsn": "3.3",
+  "target_publisher": "ZTF (www.ztf.caltech.edu)",
+  "target_programid": 1,
+  "target_notes": "Sample of 5 alerts from ZTF (Zwicky Transient Facility) public alert archive for night 2023-02-20 UTC. ZTF is a wide-field optical survey from Palomar Observatory (Bellm et al. 2019, PASP 131, 018002). The public archive (programid=1) is released ~5 days after observation. Schema version 3.3 is the current Avro schema (since 2020) per https://github.com/ZwickyTransientFacility/ztf-avro-alert/. Alert objectIds follow the convention ZTFNNxxxxxxx where NN is the 2-digit year of first detection and xxxxxxx is a 7-letter base-26 sequence.",
+  "captured_at_utc": "2026-04-27T01:25:00Z",
+  "captured_from": "https://ztf.uw.edu/alerts/public/ztf_public_20230220.tar.gz",
+  "capture_method": "Downloaded the 9.5 MB compressed tar of the entire night (213 Avro alerts). Streamed via httpx with follow_redirects=True. Extracted the first 5 .avro files via tarfile.extractfile to inputs/alerts/. Discarded the remaining 208 alerts and the tar bytes. Each persisted alert is ~50-67 KB; total persisted footprint ~300 KB. fastavro reads the Avro records at runtime — no astropy/cutout-image rendering needed for v0.",
+  "files": ["alerts/*.avro"]
+}
