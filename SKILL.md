@@ -191,7 +191,7 @@ your script ──► dh CLI ──► daemon (Unix socket) ──► DuckDB con
 - **The daemon does NOT import torch or download weights at startup.** First `vlm()` / `embed()` call triggers the resolve path. Cold-start <1s by design.
 - **`should_download()` gates every HF pull.** A 6-hour download against a 4-hour task routes to hosted; if no hosted route exists for that primitive, the skill is `skipped-below-floor`.
 - **`DH_FORCE_LOCAL=1` overrides hosted preference.** Useful for offline replay verification; never for production capture.
-- **Cassettes carry `recorded_at`.** `check-skill` warns when >90 days old; weekly `--cassette-refresh` re-records against real APIs.
+- **Cassettes are forward-looking.** No skill in the v0 green path uses a foundation model, so no `cache.json` is exercised yet. When the first model-using skill lands its cassette, recordings will be stamped with `recorded_at`, `check-skill` will warn on stale ones, and a `--cassette-refresh` flag will re-record against real APIs.
 - **Skills MUST NOT branch on `caps.regime`.** The linter rejects it. Always query computed flags (`caps.has_gpu`, `caps.ram_available_bytes`, `caps.is_offline`) so the same code runs across regimes.
 - **`embedding_cosine_to` predicates need a `cache.json`.** Live API hits during `check-skill` are forbidden — record once, replay forever.
 - **PDF text-extraction is not OCR.** `pypdf` returns empty text on image-scanned PDFs; don't anchor a `min_length` predicate to extracted text without a fallback (filename match, OCR pass).

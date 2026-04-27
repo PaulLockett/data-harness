@@ -56,10 +56,9 @@ Concrete actions to spawn (each in a backgrounded shell):
 
 - `mkdir -p ~/.data-harness/` — ensure the scratch directory exists.
 - `dh caps` — refresh the daemon's capabilities snapshot against the user's stated ceiling.
-- `dh models pull` — local model weights sized to the storage budget. Skip if the user is hosted-API-only.
 - `make smoke` — substrate sanity check.
 
-While they run, ask Q4–Q11. Check progress in the natural pauses between user answers — not mid-question. If a download finishes mid-conversation, you can briefly note it ("model weights done, proceeding") without breaking stride. If something's still running at wrap-up, name it.
+These three mostly take seconds, so the parallel-execution discipline only matters once the substrate has heavier work to absorb. `dh models pull` will join this list when the first model-using skill lands real Hugging Face downloads; until then the v0 green path is foundation-model-free and there's nothing to fetch. The pattern is set up for that day — keep checking progress in the natural pauses between user answers, name anything still running at wrap-up.
 
 ### About what you're building
 
