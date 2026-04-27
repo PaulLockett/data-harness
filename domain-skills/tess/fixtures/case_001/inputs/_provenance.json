@@ -1,0 +1,11 @@
+{
+  "target_tic": 150428135,
+  "target_aliases": ["TOI-700", "TIC 150428135", "150428135"],
+  "target_notes": "M-dwarf, ~100 ly distant, hosts the first Earth-sized habitable-zone planet found by TESS (TOI-700 d, announced 2026-01-06). Stellar params: TEFF~3494 K, R~0.42 R_sun, V_TESS~10.91. Sky position RA~97.10 deg, Dec~-65.58 deg.",
+  "captured_at_utc": "2026-04-27T00:00:00Z",
+  "captured_from": "https://mast.stsci.edu/api/v0.1/Download/file/?uri=mast:TESS/product/tess2018206045859-s0001-0000000150428135-0120-s_lc.fits",
+  "capture_method": "MAST sector-bulk manifest (https://archive.stsci.edu/missions/tess/download_scripts/sector/tesscurl_sector_1_lc.sh) grepped for TIC-padded URL, downloaded via httpx with follow_redirects=True (302s through stpubdata.s3.us-east-1.amazonaws.com), then parsed with astropy.io.fits.",
+  "lightcurve_urls": {
+    "tess2018206045859-s0001-0000000150428135-0120-s_lc.fits": "https://mast.stsci.edu/api/v0.1/Download/file/?uri=mast:TESS/product/tess2018206045859-s0001-0000000150428135-0120-s_lc.fits"
+  }
+}

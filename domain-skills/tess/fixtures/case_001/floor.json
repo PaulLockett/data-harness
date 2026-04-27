@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 4,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": ["astropy"],
+  "notes": "astropy is in pyproject.toml core deps. FITS files are O(1-50 MB); a few hundred MB of RAM is plenty for one sector light-curve. No GPU, no API key, no foundation models in v0."
+}
