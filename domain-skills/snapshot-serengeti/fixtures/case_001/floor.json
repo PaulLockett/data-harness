@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 1,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": [],
+  "notes": "Pure stdlib CSV + JSON parse. Captured fixture is ~5.6 KB (894 B species_list.csv + 4.7 KB splits.json). Lila BC Azure Blob is no-auth public download."
+}

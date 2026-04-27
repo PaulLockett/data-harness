@@ -1,0 +1,16 @@
+{
+  "target_dataset": "Snapshot Serengeti",
+  "target_dataset_version": "v2.1",
+  "target_n_species_classes": 61,
+  "target_top_species_by_count": ["empty", "wildebeest", "zebra", "gazellethomsons", "buffalo"],
+  "target_well_known_species": ["wildebeest", "zebra", "lionfemale", "elephant", "giraffe", "cheetah", "leopard"],
+  "target_n_seasons": 11,
+  "target_camera_site_pattern": "^[A-Z][0-9]{2}$",
+  "target_splits": ["train", "val"],
+  "target_min_train_sites": 100,
+  "target_notes": "Snapshot Serengeti is a citizen-science camera-trap dataset from Serengeti National Park, Tanzania. 11 seasons of data (S01-S11) collected 2010-2014; ~3.2M images annotated by Zooniverse volunteers. Documented in Swanson et al. (2015), 'Snapshot Serengeti, high-frequency annotated camera trap images of 40 mammalian species in an African savanna'. The published 60-class taxonomy includes 'empty' (camera triggered but no animal visible), 'human' (fieldworkers/poachers), and 58 wildlife species. Wildebeest tops the non-empty count list because of the Serengeti's famous ~1.5M-strong wildebeest migration. Captured the species list + train/val splits from Lila BC (lila.science) — both are public no-auth Azure Blob downloads.",
+  "captured_at_utc": "2026-04-27T03:25:00Z",
+  "captured_from": "https://lilawildlife.blob.core.windows.net/lila-wildlife/snapshotserengeti-v-2-0/SnapshotSerengeti_S1-11_v2.1.species_list.csv",
+  "capture_method": "GET 2 small files from Lila BC: species_list.csv (894 bytes, 60 species + image counts) and SnapshotSerengetiSplits_v0.json (4.7 KB, train/val site splits). The full S01-S11 image archive is hundreds of GB; the per-season annotation JSONs are 19 MB+ each — both deliberately not captured in v0. case_002 may add one season's annotations once cassette discipline is wired.",
+  "files": ["species_list.csv", "splits.json"]
+}
