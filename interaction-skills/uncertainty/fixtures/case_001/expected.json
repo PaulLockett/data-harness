@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.kind", "type": "string", "in_set": ["bootstrap", "conformal", "bayesian"]},
+    {"path": "$.stat", "type": "string", "in_set": ["mean", "median", "var"]},
+    {"path": "$.point", "type": "float", "in_range": [-1000, 1000]},
+    {"path": "$.ci_low", "type": "float", "in_range": [-1000, 1000]},
+    {"path": "$.ci_high", "type": "float", "in_range": [-1000, 1000]},
+    {"path": "$.level", "type": "float", "in_range": [0.5, 0.999]},
+    {"path": "$.n_resamples", "type": "int", "in_range": [100, 100000]},
+    {"path": "$", "type": "object", "key_set_includes": ["kind", "stat", "point", "ci_low", "ci_high", "level", "n_resamples"]}
+  ]
+}

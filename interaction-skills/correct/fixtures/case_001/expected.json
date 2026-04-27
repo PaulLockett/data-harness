@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.method", "type": "string", "in_set": ["bh", "bonferroni"]},
+    {"path": "$.alpha", "type": "float", "in_range": [0.001, 0.5]},
+    {"path": "$.n_total", "type": "int", "in_range": [5, 100000]},
+    {"path": "$.n_significant_at_alpha", "type": "int", "in_range": [0, 100000]},
+    {"path": "$.q", "type": "list", "min_size": 5, "max_size": 100000},
+    {"path": "$.q[*]", "type": "float", "in_range": [0.0, 1.0], "for_all": true},
+    {"path": "$", "type": "object", "key_set_includes": ["method", "alpha", "n_total", "n_significant_at_alpha", "q"]}
+  ]
+}
