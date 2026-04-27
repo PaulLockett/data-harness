@@ -1,0 +1,8 @@
+primaryid$caseid$indi_drug_seq$indi_pt
+215586863$21558686$1$Psychotic symptom
+215586863$21558686$3$Psychotic symptom
+215586863$21558686$4$Product used for unknown indication
+215586863$21558686$5$Psychotic symptom
+215586863$21558686$6$Psychotic symptom
+215586863$21558686$7$Psychotic symptom
+215586863$21558686$8$Psychotic symptom

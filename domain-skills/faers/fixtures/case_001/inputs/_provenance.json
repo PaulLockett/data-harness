@@ -1,0 +1,19 @@
+{
+  "target_drug": "CLOZAPINE",
+  "target_primaryid": "215586863",
+  "target_caseid": "21558686",
+  "target_aliases": ["CLOZAPINE", "clozapine", "Clozaril"],
+  "target_notes": "Clozapine — atypical antipsychotic (Clozaril). Has a black-box warning for agranulocytosis, myocarditis, seizures, orthostatic hypotension, and constipation; only used for treatment-resistant schizophrenia. The chosen primaryid is a 30-year-old male EU patient hospitalized after multiple psychiatric reactions while on clozapine 125 mg/day. PS=primary suspect. caseversion=3 means the report was updated twice after initial submission.",
+  "captured_at_utc": "2026-04-27T01:05:00Z",
+  "captured_from": "https://fis.fda.gov/content/Exports/faers_ascii_2025q3.zip",
+  "capture_method": "Downloaded the 73 MB FAERS 2025Q3 quarterly ZIP via curl from https://fis.fda.gov/content/Exports/. Extracted the 7 $-delimited ASCII tables (DEMO, DRUG, REAC, OUTC, RPSR, THER, INDI) to /tmp scratch (uncompressed ~430 MB). Used Polars to (a) scan DRUG for rows where drugname contains 'CLOZAPINE' and role_cod = 'PS' (primary suspect), (b) join to OUTC for serious outcomes (DE/LT/HO), (c) pick the primaryid with the highest reaction count among those. Filtered every table to that primaryid, wrote each subset to inputs/extracted/<table>.txt. Deleted /tmp scratch. Persisted footprint: ~3 KB.",
+  "table_files": {
+    "DEMO": "extracted/demo.txt",
+    "DRUG": "extracted/drug.txt",
+    "REAC": "extracted/reac.txt",
+    "OUTC": "extracted/outc.txt",
+    "RPSR": "extracted/rpsr.txt",
+    "THER": "extracted/ther.txt",
+    "INDI": "extracted/indi.txt"
+  }
+}

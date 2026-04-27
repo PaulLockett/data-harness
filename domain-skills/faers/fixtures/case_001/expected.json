@@ -1,0 +1,72 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.target.drug_name", "type": "string", "in_set": ["CLOZAPINE"]},
+    {"path": "$.target.primaryid", "type": "string", "in_set": ["215586863"]},
+    {"path": "$.target.caseid", "type": "string", "in_set": ["21558686"]},
+    {"path": "$.target.case_version", "type": "string", "regex": "^[0-9]+$"},
+    {"path": "$.target", "type": "object",
+     "key_set_includes": ["drug_name", "primaryid", "caseid", "case_version"]},
+
+    {"path": "$.report.primaryid", "type": "string", "in_set": ["215586863"]},
+    {"path": "$.report.caseid", "type": "string", "in_set": ["21558686"]},
+    {"path": "$.report.patient.age", "type": "string", "regex": "^[0-9]{1,3}$"},
+    {"path": "$.report.patient.age_cod", "type": "string",
+     "in_set": ["YR", "MO", "DY", "WK", "HR", "DEC", ""]},
+    {"path": "$.report.patient.sex", "type": "string",
+     "in_set": ["M", "F", "UNK", "NS", ""]},
+    {"path": "$.report.patient.country", "type": "string", "regex": "^[A-Z]{2,3}$"},
+    {"path": "$.report.report_meta.rept_cod", "type": "string",
+     "in_set": ["EXP", "DIR", "PER", "30P", "5DS", "5DR", "COMM", "SEM", "IND", "ER"]},
+    {"path": "$.report.report_meta.init_fda_dt", "type": "string", "regex": "^[0-9]{8}$"},
+    {"path": "$.report.report_meta.fda_dt", "type": "string", "regex": "^[0-9]{8}$"},
+    {"path": "$.report.report_meta.mfr_sndr", "type": "string", "min_length": 1},
+
+    {"path": "$.drugs", "type": "list", "min_size": 1, "max_size": 200},
+    {"path": "$.drugs[*].drug_seq", "type": "string", "regex": "^[0-9]+$", "for_all": true},
+    {"path": "$.drugs[*].role_cod", "type": "string",
+     "in_set": ["PS", "SS", "C", "I"], "for_all": true},
+    {"path": "$.drugs[*].drugname", "type": "string", "min_length": 1, "for_all": true},
+
+    {"path": "$.reactions", "type": "list", "min_size": 1, "max_size": 500},
+    {"path": "$.reactions[*].pt", "type": "string", "min_length": 2, "for_all": true},
+
+    {"path": "$.outcomes", "type": "list", "min_size": 1, "max_size": 20},
+    {"path": "$.outcomes[*].outc_cod", "type": "string",
+     "in_set": ["DE", "LT", "HO", "DS", "CA", "RI", "OT"], "for_all": true},
+
+    {"path": "$.files", "type": "list", "min_size": 7, "max_size": 7},
+    {"path": "$.files[*].table", "type": "string",
+     "in_set": ["DEMO", "DRUG", "REAC", "OUTC", "RPSR", "THER", "INDI"], "for_all": true},
+    {"path": "$.files[*].file_path", "type": "string",
+     "regex": "^extracted/[a-z]+\\.txt$", "for_all": true},
+    {"path": "$.files[*].sha256_prefix", "type": "string",
+     "regex": "^[0-9a-f]{16}$", "for_all": true},
+    {"path": "$.files[*].n_rows", "type": "int",
+     "in_range": [0, 5000], "for_all": true},
+    {"path": "$.files[*].n_columns", "type": "int",
+     "in_range": [2, 50], "for_all": true},
+
+    {"path": "$.validation.all_validated", "type": "bool", "in_set": [true]},
+    {"path": "$.validation.target_drug_in_drug_table", "type": "bool", "in_set": [true]},
+    {"path": "$.validation.target_drug_role_is_primary_suspect", "type": "bool", "in_set": [true]},
+    {"path": "$.validation.all_files_keyed_by_target_primaryid", "type": "bool", "in_set": [true]},
+    {"path": "$.validation.n_files", "type": "int", "in_range": [7, 7]},
+    {"path": "$.validation.target_identifiers", "type": "list", "min_size": 2, "max_size": 30},
+    {"path": "$.validation", "type": "object",
+     "key_set_includes": ["all_validated", "target_drug_in_drug_table",
+                          "target_drug_role_is_primary_suspect",
+                          "all_files_keyed_by_target_primaryid",
+                          "n_files", "n_drugs", "n_reactions", "n_outcomes",
+                          "target_identifiers"]},
+
+    {"path": "$.captured_from", "type": "string",
+     "regex": "^https://fis\\.fda\\.gov/content/Exports/faers_ascii_"},
+
+    {"path": "$", "type": "object",
+     "key_set_includes": ["target", "report", "drugs", "reactions", "outcomes",
+                          "indications", "therapy", "report_sources",
+                          "files", "captured_from", "captured_at_utc",
+                          "capture_method", "validation"]}
+  ]
+}

@@ -1,0 +1,17 @@
+primaryid$caseid$pt$drug_rec_act
+215586863$21558686$Priapism$
+215586863$21558686$Drug withdrawal syndrome$
+215586863$21558686$Tremor$
+215586863$21558686$Self-destructive behaviour$
+215586863$21558686$Psychotic symptom$
+215586863$21558686$Antisocial personality disorder$
+215586863$21558686$Drug dependence$
+215586863$21558686$Substance abuse$
+215586863$21558686$Psychomotor hyperactivity$
+215586863$21558686$Hypertension$
+215586863$21558686$Aggression$
+215586863$21558686$Borderline personality disorder$
+215586863$21558686$Alcoholism$
+215586863$21558686$Suicide attempt$
+215586863$21558686$Influenza like illness$
+215586863$21558686$Food craving$

@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 4,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": ["polars"],
+  "notes": "Polars is in pyproject.toml core deps. Filtered case_001 fixture is ~3 KB across 7 ASCII tables; runtime is dominated by parsing 7 tiny files. The capture step is bulk: download 73 MB ZIP, extract to ~430 MB, scan with Polars in ~5 s, persist <10 KB filtered subset. Capture-time scratch is reclaimed; runtime memory under 100 MB."
+}
