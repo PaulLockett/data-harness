@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 4,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": ["polars", "pyarrow"],
+  "notes": "Polars + pyarrow for parquet read. Persisted fixture is ~14 KB; runtime memory under 100 MB. Capture-time pulls a 277 MB ZIP and a 770 MB CSV through scratch — those are deleted before the case is committed."
+}

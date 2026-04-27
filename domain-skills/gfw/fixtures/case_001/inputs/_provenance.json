@@ -1,0 +1,14 @@
+{
+  "target_mmsi": 303324000,
+  "target_vessel_name": "TAASINGE",
+  "target_call_sign": "WDI7004",
+  "target_vessel_type": 30,
+  "target_vessel_type_name": "Fishing",
+  "target_observation_date_utc": "2024-01-01",
+  "target_country_mid": "303",
+  "target_notes": "TAASINGE — US-flagged fishing vessel, MMSI 303324000 (MID 303 = Alaska/USA in ITU MID assignments). Captured tracks for one day 2024-01-01 UTC from NOAA Marine Cadastre's public AIS data feed. The Global Fishing Watch (GFW) gateway API requires authentication that's outside v0 scope; Marine Cadastre serves the same family of AIS data that GFW + every fishing-effort study processes. Predicates anchored to the underlying ITU-R M.1371 AIS standard apply unchanged regardless of host. case_002 may wire the GFW gateway when an auth path is added.",
+  "captured_at_utc": "2026-04-27T01:50:00Z",
+  "captured_from": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/2024/AIS_2024_01_01.zip",
+  "capture_method": "Downloaded the 277 MB compressed daily AIS ZIP from NOAA Marine Cadastre to /tmp scratch (uncompressed CSV is 770 MB). Used Polars scan_csv with infer_schema_length=10000 + filter to VesselType=30 (Fishing per ITU-R M.1371 maritime ID enum). Among 1,095 fishing vessels in the day, picked MMSI 303324000 from the 100-500-track-count bucket sorted ascending (a moderate-activity vessel that exercises the schema without being too noisy). Filtered all rows for that MMSI and persisted as a 14.7 KB zstd-compressed Parquet. Deleted /tmp scratch.",
+  "files": ["vessel_tracks.parquet"]
+}
