@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 4,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": ["zarr", "numpy", "numcodecs"],
+  "notes": "zarr v3 reads v2-format stores transparently; the captured level-5 chunks decode through blosc/zstd via numcodecs. Persisted footprint is ~3.4 MB (4 compressed chunks + Zarr metadata). Runtime memory peaks under 200 MB when sampling a 50x30x50 voxel block. Levels 0-4 of the multiscale pyramid are NOT persisted — those would balloon to GBs and exceed the resource budget."
+}

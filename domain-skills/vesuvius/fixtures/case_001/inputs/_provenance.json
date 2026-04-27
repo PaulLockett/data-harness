@@ -1,0 +1,15 @@
+{
+  "target_fragment_id": "PHercParis2Fr47",
+  "target_scroll_id": "PHerc.Paris.2",
+  "target_energy_keV": 54,
+  "target_voxel_size_um": 3.24,
+  "target_volume_level": 5,
+  "target_axes": ["z", "y", "x"],
+  "target_dtype": "uint16",
+  "target_zarr_format": 2,
+  "target_notes": "Vesuvius Challenge — fragment 47 (Frag1 in scrollprize.org's organization) of the Herculaneum scroll P.Herc.Paris.2 from the Bibliothèque Nationale de France (the Paris fragments). Scanned at the Diamond Light Source (UK) at 54 keV X-ray energy and 3.24 micron voxel size. Persisted level 5 of the OME-NGFF multiscale Zarr pyramid (most-downsampled, ~3.4 MB). Source: scrollprize.org / dl.ash2txt.org. The fragment is one of nine published carbonized papyrus pieces; PHercParis2Fr47 was used as competition data for the Vesuvius Challenge first letters prize.",
+  "captured_at_utc": "2026-04-27T01:35:00Z",
+  "captured_from": "https://dl.ash2txt.org/fragments/Frag1/PHercParis2Fr47.volpkg/volumes_zarr/54keV_3.24um_.zarr/",
+  "capture_method": "Walked the autoindex listings under https://dl.ash2txt.org/fragments/Frag1/ to locate the OME-NGFF Zarr root. Downloaded the root .zattrs (multiscales metadata, 3 KB) + .zgroup, then level 5/.zarray + 4 blosc/zstd-compressed chunks (chunks 0/0/0, 0/0/1, 1/0/0, 1/0/1, totaling ~3.4 MB compressed). Levels 0-4 (full-res through 16x downsampled) NOT downloaded — those would balloon to GBs. zarr v3.1 reads the v2-format store via zarr.open(mode='r'). Validated voxel range 20983-32657 (uint16; consistent with X-ray CT attenuation values for carbonized organic material).",
+  "files": ["fragment.zarr/.zattrs", "fragment.zarr/.zgroup", "fragment.zarr/5/.zarray", "fragment.zarr/5/0/0/0", "fragment.zarr/5/0/0/1", "fragment.zarr/5/1/0/0", "fragment.zarr/5/1/0/1"]
+}
