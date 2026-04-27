@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.kind", "type": "string", "in_set": ["random", "temporal", "group"]},
+    {"path": "$.train_rows", "type": "int", "in_range": [1, 100000]},
+    {"path": "$.test_rows", "type": "int", "in_range": [1, 100000]},
+    {"path": "$.overlap_count", "type": "int", "in_range": [1, 1000]},
+    {"path": "$.leak_score", "type": "float", "in_range": [0.001, 1.0]},
+    {"path": "$.group_collisions", "type": "list", "min_size": 1, "max_size": 100},
+    {"path": "$", "type": "object", "key_set_includes": ["kind", "train_rows", "test_rows", "overlap_count", "leak_score", "group_collisions"]}
+  ]
+}

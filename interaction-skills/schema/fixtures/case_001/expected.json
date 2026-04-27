@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.valid", "type": "bool", "in_set": [false]},
+    {"path": "$.missing_required", "type": "list", "min_size": 1, "max_size": 10},
+    {"path": "$.extra_keys", "type": "list", "min_size": 0, "max_size": 10},
+    {"path": "$.type_mismatches", "type": "list", "min_size": 1, "max_size": 10},
+    {"path": "$", "type": "object", "key_set_includes": ["valid", "missing_required", "extra_keys", "type_mismatches"]}
+  ]
+}

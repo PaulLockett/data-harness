@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.target_col", "type": "string", "in_set": ["y", "target", "label", "outcome"]},
+    {"path": "$.max_correlation", "type": "float", "in_range": [0.95, 1.0]},
+    {"path": "$.top_correlated", "type": "list", "min_size": 1, "max_size": 10},
+    {"path": "$.suspect_features", "type": "list", "min_size": 1, "max_size": 10},
+    {"path": "$", "type": "object", "key_set_includes": ["target_col", "max_correlation", "top_correlated", "suspect_features"]}
+  ]
+}

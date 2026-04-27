@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.key_col", "type": "string", "in_set": ["id", "user_id", "facility_id", "uuid"]},
+    {"path": "$.n_rows", "type": "int", "in_range": [3, 100000]},
+    {"path": "$.n_unique_keys", "type": "int", "in_range": [1, 100000]},
+    {"path": "$.duplicate_keys", "type": "list", "min_size": 1, "max_size": 100},
+    {"path": "$.pk_violation_count", "type": "int", "in_range": [2, 100]},
+    {"path": "$.is_valid_pk", "type": "bool", "in_set": [false]},
+    {"path": "$", "type": "object", "key_set_includes": ["key_col", "n_rows", "n_unique_keys", "duplicate_keys", "is_valid_pk"]}
+  ]
+}

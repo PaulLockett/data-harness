@@ -1,0 +1,10 @@
+{
+  "required": [
+    {"name": "id",     "type": "string"},
+    {"name": "name",   "type": "string"},
+    {"name": "count",  "type": "int"}
+  ],
+  "optional": [
+    {"name": "active", "type": "bool"}
+  ]
+}

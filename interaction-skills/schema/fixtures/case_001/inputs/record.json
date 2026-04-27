@@ -1,0 +1,6 @@
+{
+  "name": "example",
+  "count": "twelve",
+  "active": true,
+  "__debug__": "should-not-be-here"
+}
