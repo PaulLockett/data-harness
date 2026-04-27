@@ -9,7 +9,7 @@ Easiest and most powerful way to do data work an LLM can trust. **Read this file
 
 ## Fast start
 
-Read `helpers.py` first. For first-time install, read `install.md` first.
+Read `SOUL.md` first — that's my constitution (voice, frame, what good and bad look like). Then `~/.data-harness/USER.md` (user profile) and `~/.data-harness/data-sources.md` (private-source access grants); if they don't exist, run `meta-skills/interview/` to bootstrap them. Then `helpers.py` for the substrate primitives. For first-time install, read `install.md` first.
 
 ## Self-maintenance
 
@@ -195,7 +195,18 @@ your script ──► dh CLI ──► daemon (Unix socket) ──► DuckDB con
 - **External-anchor citations live in `case_NNN/README.md`.** A predicate without a citation is a candidate for predicate rot when the data drifts; the README is where the next agent learns where the number came from.
 - **`make check-all-skills` must be hermetic.** No live API hits, no live data fetches. If a skill needs the network during `check-skill`, the cassette is incomplete.
 
+## Persistent state maintenance
+
+Two per-user files persist across sessions and grow as we work:
+
+**`~/.data-harness/USER.md`** — the user's profile. When you observe something stable about how they work — a preference, an anti-pattern, a domain they're working in — append or revise the relevant section. If new behavior contradicts what's there, edit; don't accumulate duplicates. When in doubt, ask before saving.
+
+**`~/.data-harness/data-sources.md`** — private data sources the user has granted (or committed to grant) access to. Each entry has a status: `pending` (committed, no credentials yet) → `configured` (credentials present, untested) → `tested` (connection verified, helper built). The interview seeds initial pending entries; subsequent sessions move entries forward as helpers get built. Never store credentials here — those belong in `.env` or a secret store.
+
+The bootstrap interview at `meta-skills/interview/` populates initial sections of both files. From then on, every session is responsible for keeping them current.
+
 ## Interaction notes
 
-- `interaction-skills/` holds the cross-cutting primitives (the four super-skill families plus `plan`/`reflect`).
+- `interaction-skills/` holds the cross-cutting data primitives (the four super-skill families plus `plan`/`reflect`).
 - `domain-skills/` holds per-source extractions and should be updated when a new domain is captured or an existing one drifts.
+- `meta-skills/` holds skills about how the agent works with the user — the bootstrap interview, plus future user-profile maintenance flows.

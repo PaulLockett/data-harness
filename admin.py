@@ -351,6 +351,13 @@ def run_setup():
     else:
         print("  .env             missing (and no .env.example to copy from)")
 
+    user_md = Path.home() / ".data-harness" / "USER.md"
+    if user_md.exists():
+        print(f"  USER.md          present at {user_md}")
+    else:
+        print( "  USER.md          missing — your next agent session will bootstrap one")
+        print( "                       via meta-skills/interview/.")
+
     suggested = _suggest_profile()
     current_profile = os.environ.get("DH_PROFILE", "")
     if current_profile:
