@@ -1,0 +1,12 @@
+# server-multi.toml — 8× A100/H100 80 GB cluster.
+extends = "base"
+
+[memory]
+budget_bytes = "1024 GiB"
+
+[gpu]
+min_vram_gb = 80
+min_devices = 8
+
+[storage]
+budget_gb = 2000

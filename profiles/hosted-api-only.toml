@@ -1,0 +1,12 @@
+# hosted-api-only.toml — full keys, no GPU, no local model downloads.
+extends = "base"
+
+[providers]
+require_hosted_apis = true
+allow_local_models = false
+
+[gpu]
+min_vram_gb = 0
+
+[network]
+allow_downloads = true  # but only for cassette refresh, not weights

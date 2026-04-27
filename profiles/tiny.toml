@@ -1,0 +1,11 @@
+# tiny.toml — for CI without net, embedded systems, ≤4 GB RAM, no GPU.
+extends = "base"
+
+[memory]
+budget_bytes = "3 GiB"
+
+[network]
+allow_downloads = false
+
+[providers]
+allow_hosted_apis = false

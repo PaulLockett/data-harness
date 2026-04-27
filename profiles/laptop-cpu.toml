@@ -1,0 +1,8 @@
+# laptop-cpu.toml — 16 GB MacBook on residential bandwidth, no GPU.
+extends = "base"
+
+[memory]
+budget_bytes = "12 GiB"
+
+[network]
+bandwidth_mbps = 100

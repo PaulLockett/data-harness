@@ -1,0 +1,9 @@
+# ci-runner.toml — GitHub Actions, no net beyond cassettes, sandbox.
+extends = "tiny"
+
+[network]
+allow_downloads = false
+allow_hosted_apis = false  # cassette replay only
+
+[ci]
+cassettes_only = true

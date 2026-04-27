@@ -1,0 +1,10 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.name", "type": "string", "min_length": 5, "max_length": 200},
+    {"path": "$.kind", "type": "string", "in_set": ["scaffold", "live", "stub"]},
+    {"path": "$.tags", "type": "list", "min_size": 1, "max_size": 10},
+    {"path": "$.score", "type": "float", "in_range": [0, 1]},
+    {"path": "$", "type": "object", "key_set_includes": ["name", "kind", "tags", "score"]}
+  ]
+}

@@ -1,0 +1,8 @@
+# laptop-gpu.toml — 16 GB RAM + ≥8 GB VRAM consumer GPU.
+extends = "base"
+
+[memory]
+budget_bytes = "12 GiB"
+
+[gpu]
+min_vram_gb = 8

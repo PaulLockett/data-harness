@@ -1,0 +1,11 @@
+# server-1gpu.toml — single A100/H100 80 GB cloud node.
+extends = "base"
+
+[memory]
+budget_bytes = "256 GiB"
+
+[gpu]
+min_vram_gb = 80
+
+[storage]
+budget_gb = 500

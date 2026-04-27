@@ -1,0 +1,11 @@
+# workstation.toml — 64 GB RAM + 24 GB consumer GPU (e.g. RTX 4090).
+extends = "base"
+
+[memory]
+budget_bytes = "56 GiB"
+
+[gpu]
+min_vram_gb = 24
+
+[storage]
+budget_gb = 100  # workstations have more headroom than laptops
