@@ -1,0 +1,19 @@
+# base.toml — declared-profile defaults that all other profiles extend.
+# Every other profiles/*.toml inherits from base via `extends = "base"`.
+# Any field omitted here defers to detected values from capabilities.py.
+
+# Resource budget — Paul's hard cap for HarnessMaker work.
+[storage]
+budget_gb = 20
+
+[live]
+ceiling = 0.40       # cap on disk/CPU/RAM/network during work
+reserved_for_user = 0.20
+
+# Memory watermarks are computed from observed RAM by default; override here only if needed.
+# [memory]
+# budget_bytes = "12 GiB"
+
+# Network defaults
+[network]
+allow_downloads = true

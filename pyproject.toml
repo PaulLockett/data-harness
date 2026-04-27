@@ -1,0 +1,109 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data-harness"
+version = "0.1.0"
+description = "The simplest, thinnest, self-healing harness for data exploration, transformation, multimodal analysis, and statistical inference across heterogeneous domains and hardware regimes."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Paul Lockett" }]
+dependencies = [
+    # Core
+    "duckdb",
+    "polars",
+    "pyarrow",
+    "pandas",
+    "numpy",
+    "scipy",
+    "scikit-learn",
+    "cvxpy",
+    "tqdm",
+    "python-dotenv",
+    "httpx",
+    "psutil",
+    "py-cpuinfo",
+    "anyio",
+    "nvidia-ml-py; sys_platform != 'darwin'",
+
+    # Decoders
+    "pypdf",
+    "pdfplumber",
+    "pdf2image",
+    "marker-pdf",
+    "surya-ocr",
+    "python-docx",
+    "python-pptx",
+    "openpyxl",
+    "Pillow",
+    "opencv-python",
+    "ffmpeg-python",
+    "soundfile",
+    "librosa",
+    "lxml",
+    "astropy",
+    "zarr",
+    "ome-zarr",
+    "fastavro",
+    "scenedetect",
+
+    # Foundation models — hosted clients (small SDKs)
+    "anthropic",
+    "openai",
+    "cohere",
+    "voyageai",
+    "google-genai",
+
+    # Math / stats
+    "pymc",
+    "numpyro",
+    "ruptures",
+    "statsmodels",
+
+    # Geospatial
+    "geopandas",
+    "shapely",
+    "rtree",
+    "h3",
+    "rasterio",
+    "pyproj",
+    "rasterstats",
+
+    # Graph
+    "networkx",
+    "igraph",
+    "leidenalg",
+    "powerlaw",
+
+    # Vector / retrieval
+    "lancedb",
+    "hnswlib",
+    "faiss-cpu",
+]
+
+[project.optional-dependencies]
+local-models = [
+    "transformers",
+    "accelerate",
+    "sentence-transformers",
+    "colpali-engine",
+    "faster-whisper",
+    "paddleocr",
+    "presidio-analyzer",
+    "gliner",
+    "huggingface_hub",
+    "torch",
+    # SAM-2 (segment-anything-2) is not on PyPI under any stable name; install manually:
+    #   uv pip install "sam2 @ git+https://github.com/facebookresearch/sam2.git"
+]
+# `gpu` extra is intentionally empty on PyPI: faiss-gpu is only available via
+# conda (NVIDIA CUDA wheels). GPU users should install it manually:
+#   conda install -c pytorch -c nvidia faiss-gpu
+gpu = []
+
+[project.scripts]
+dh = "run:main"
+
+[tool.setuptools]
+py-modules = ["run", "helpers", "daemon", "admin", "check_skill", "models", "capabilities", "deadlines"]
