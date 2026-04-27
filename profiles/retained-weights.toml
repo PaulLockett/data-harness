@@ -1,0 +1,65 @@
+# retained-weights.toml — manifest of model weights required for offline replay
+#
+# Per spec §13 + §15, when a skill resolves a foundation-model primitive
+# (`embed`, `llm`, `vlm`, `rerank`, `ocr`, `transcribe`, `vad`, `nli`,
+# `pii`), the resolved client either calls a hosted API (recorded once
+# via the cassette layer) or loads a local weight file. This manifest
+# declares which local weights MUST be retained on disk to replay every
+# fixture in `make check-all-skills` from cache.
+#
+# Acceptance gate: deleting any weight NOT in this list (specifically
+# everything else under `~/.cache/huggingface/hub/`) MUST leave
+# `make check-all-skills` green on the `laptop-cpu` and `hosted-api-only`
+# profiles. case_002+ that introduce a model-using primitive must update
+# this list before the case can be promoted to green.
+
+[manifest]
+schema_version = "1"
+last_updated = "2026-04-27"
+v0_status = "no model weights required"
+
+# v0 substrate: every skill in `make check-all-skills` (31 fixtures across
+# 30 skills) is foundation-model-free. No skill calls `embed()`, `llm()`,
+# `vlm()`, or any other `models.resolve(...)` primitive in the green path.
+# The 18 v0 interaction-skills are pure numpy/scipy/sklearn computations;
+# the 12 domain skills (ADEM, TESS, FAERS, USAspending, ZTF, Vesuvius,
+# GFW, USPTO, EDGAR, SoccerNet, DHS, Snapshot Serengeti) are
+# parse-and-validate-against-external-schema cases.
+#
+# `models.resolve()` returns stubs for all primitives; the cassette layer
+# in `daemon.py` is wired but not exercised by any case_001.
+
+[required]
+# (intentionally empty — no model weights required for v0 green path)
+embed = []
+llm = []
+vlm = []
+rerank = []
+ocr = []
+transcribe = []
+vad = []
+nli = []
+pii = []
+
+# When case_002+ introduces a model-using primitive, list the weights
+# below. Format: { primitive = "<name>", weights = ["<HF model id>", ...] }
+#
+# Example for a future case that uses sentence-transformers/all-MiniLM-L6-v2:
+#   embed = ["sentence-transformers/all-MiniLM-L6-v2"]
+#   # ~22 MB safetensors + ~50 KB tokenizer files
+
+[budget]
+# Indicative budget if any future model-using case is added. Stays well
+# inside the 20 GB total HarnessMaker/ cap.
+max_total_weights_mb = 5000   # 5 GB headroom
+budget_used_mb = 0
+budget_remaining_mb = 5000
+
+# Notes for future-me:
+#  - Hosted-API + cassette is the spec-default path. Local weights are
+#    only declared here when laptop-cpu / laptop-gpu / workstation
+#    profiles need offline replay AND no hosted-API alternative is
+#    available.
+#  - Smallest-viable-int4-quant per class. One embedder, optionally one
+#    tiny LLM, optionally one tiny VLM. Never a 7B+ model in the retained
+#    list unless a domain case demonstrably requires it.
