@@ -40,27 +40,40 @@ Before asking any questions:
 
 ## Interview flow
 
-Ask these in order. Skip any that the existing USER.md already answers; deepen any that look thin.
-
-### About you and how you work
-
-1. **Role and background** — What do you do day-to-day? What discipline did you come from?
-2. **Communication style** — Concise answers, narrative explanations, or step-by-step? Bullet-friendly or prose?
-3. **Technical depth** — What level should I assume? Domain expert / comfortable generalist / learning-as-we-go.
-4. **Collaboration style** — Should I make changes directly, propose options first, or ask before edits?
-5. **Triggers** — Is there a way of working — common in agents — that you specifically don't want me doing? (Examples: throat-clearing, asking permission for trivial edits, lecturing about mindset, soft-pedaling hard truths, hand-waving when uncertain.)
-
-### About what you're building
-
-6. **Domains** — What kinds of data are you working with? (Public datasets, internal records, multimodal scrolls, peer-reviewed archives, regulator portals, ...)
-7. **Done** — When you finish a piece of work, how do you know it's actually done? What's the test in your head?
-8. **Failure response** — When something doesn't work the way you wanted, what's the right next move? Retry, escalate to you, find an alternative path, pause and ask.
+Ask in order. The first three questions gate setup actions — once they're answered, **kick off background work and keep the conversation going** so downloads finish during the interview rather than after it. Skip any question the existing USER.md already answers; deepen any that look thin.
 
 ### About your environment and what the agent can reach
 
-9. **Hardware regime and runtime ceiling** — What does your machine look like? (You can also defer to `dh caps`.) How much of it can the harness use at a time while running? (Default: 40%, with 20% reserved for you.)
-10. **Storage budget** — How much disk can the harness keep at rest for fixtures, model weights, and cassettes? (Default: 20 GB.) If you want a tighter or looser cap, say so now.
-11. **Data sources you'll grant access to** — Public APIs are open by default. What private sources will you let the agent reach? Your own databases, internal record stores, OAuth services, file dumps the agent doesn't have without you. Name each one — we'll record each as a pending entry the user can fulfill on their own schedule.
+1. **Hardware regime and runtime ceiling** — What does your machine look like? (You can also defer to `dh caps`.) How much of it can the harness use at a time while running? (Default: 40%, with 20% reserved for you.)
+2. **Storage budget** — How much disk can the harness keep at rest for fixtures, model weights, and cassettes? (Default: 20 GB.) If you want a tighter or looser cap, say so now.
+3. **Data sources you'll grant access to** — Public APIs are open by default. What private sources will you let the agent reach? Your own databases, internal record stores, OAuth services, file dumps the agent doesn't have without you. Name each one — we'll record each as a pending entry the user can fulfill on their own schedule.
+
+### Kick off setup in parallel (after Q1–Q3)
+
+Once the environment answers are in, start the work the storage budget and hardware regime have unblocked. Don't wait for the rest of the interview. The remaining eight questions should fill the time the downloads need; by wrap-up, setup should be complete or near-complete.
+
+Concrete actions to spawn (each in a backgrounded shell):
+
+- `mkdir -p ~/.data-harness/` — ensure the scratch directory exists.
+- `dh caps` — refresh the daemon's capabilities snapshot against the user's stated ceiling.
+- `dh models pull` — local model weights sized to the storage budget. Skip if the user is hosted-API-only.
+- `make smoke` — substrate sanity check.
+
+While they run, ask Q4–Q11. Check progress in the natural pauses between user answers — not mid-question. If a download finishes mid-conversation, you can briefly note it ("model weights done, proceeding") without breaking stride. If something's still running at wrap-up, name it.
+
+### About what you're building
+
+4. **Domains** — What kinds of data are you working with? (Public datasets, internal records, multimodal scrolls, peer-reviewed archives, regulator portals, ...)
+5. **Done** — When you finish a piece of work, how do you know it's actually done? What's the test in your head?
+6. **Failure response** — When something doesn't work the way you wanted, what's the right next move? Retry, escalate to you, find an alternative path, pause and ask.
+
+### About you and how you work
+
+7. **Role and background** — What do you do day-to-day? What discipline did you come from?
+8. **Communication style** — Concise answers, narrative explanations, or step-by-step? Bullet-friendly or prose?
+9. **Technical depth** — What level should I assume? Domain expert / comfortable generalist / learning-as-we-go.
+10. **Collaboration style** — Should I make changes directly, propose options first, or ask before edits?
+11. **Triggers** — Is there a way of working — common in agents — that you specifically don't want me doing? (Examples: throat-clearing, asking permission for trivial edits, lecturing about mindset, soft-pedaling hard truths, hand-waving when uncertain.)
 
 ## Saving conclusions
 
@@ -108,14 +121,15 @@ When the interview is done:
 
 1. Print the new USER.md sections back to the user.
 2. If any pending data-source entries were created, print those too — the user should see exactly what they committed to providing.
-3. Ask: "Anything wrong or missing?"
-4. Make at most one round of corrections; save them.
-5. Tell the user: "USER.md will keep growing during normal sessions — when I notice something stable about how you work that isn't already there, I'll add it; when behavior contradicts what's there, I'll edit rather than append. data-sources.md only changes when you grant new access or I move a pending entry forward as we get a source connected and tested."
+3. **Confirm setup status.** Background pulls finished? Daemon warm? Capabilities snapshot fresh? Tell the user where things stand. If something's still running, name it and roughly how much longer — don't end the interview pretending setup is done when it isn't.
+4. Ask: "Anything wrong or missing?"
+5. Make at most one round of corrections; save them.
+6. Tell the user: "USER.md will keep growing during normal sessions — when I notice something stable about how you work that isn't already there, I'll add it; when behavior contradicts what's there, I'll edit rather than append. data-sources.md only changes when you grant new access or I move a pending entry forward as we get a source connected and tested."
 
 ## Updating these files after the interview
 
 This skill bootstraps both files. Future sessions are responsible for keeping them current.
 
-**USER.md** — append when you learn something new and stable about how the user works (a one-off correction during one task is noise; a pattern repeating across tasks is signal). Edit when behavior contradicts what's there; don't let stale duplicates accumulate. When in doubt, ask: "I noticed you do X consistently — should I add that to USER.md?"
+**USER.md** — append when you learn something new and stable about how the user works (a one-off correction during one task is noise; a pattern repeating across tasks is signal). Edit when behavior contradicts what's there; don't let stale duplicates accumulate. **Compress when sections sprawl** — once a section grows past a tight paragraph (six or seven sentences), summarize it back to one; preserve the rule, drop the redundant examples. When in doubt, ask: "I noticed you do X consistently — should I add that to USER.md?"
 
 **data-sources.md** — entries move forward (`pending` → `configured` → `tested`) as the user provides credentials and helpers get built. Append a new pending entry when the user grants access to a private source mid-session, the same way the interview does. Never store credentials here.

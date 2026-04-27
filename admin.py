@@ -316,6 +316,12 @@ def run_doctor():
         print("  latest release    (could not reach github)")
     print(f"  daemon            {'alive' if daemon else 'not running (will auto-start on next `dh` call)'}")
     print(f"  .env              {'present at ' + str(env_path) if env_path.exists() else 'missing (optional — cp .env.example .env to enable hosted-API skills)'}")
+    soul_md = here / "SOUL.md"
+    user_md = Path.home() / ".data-harness" / "USER.md"
+    data_sources_md = Path.home() / ".data-harness" / "data-sources.md"
+    print(f"  SOUL.md           {'present' if soul_md.exists() else 'MISSING — repo is incomplete'}")
+    print(f"  USER.md           {'present at ' + str(user_md) if user_md.exists() else 'missing (run `dh --setup` to bootstrap via meta-skills/interview/)'}")
+    print(f"  data-sources.md   {'present at ' + str(data_sources_md) if data_sources_md.exists() else 'missing (created lazily on first private-source grant)'}")
 
     row("python >= 3.11", py_ok, "" if py_ok else "data-harness requires Python 3.11+")
     row("capabilities.py", cap_ok, "" if cap_ok else f"missing at {here / 'capabilities.py'}")
