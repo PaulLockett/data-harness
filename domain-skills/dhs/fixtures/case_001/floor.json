@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 1,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": [],
+  "notes": "Pure stdlib JSON parse. Captured fixture is ~14 KB across 4 JSON files. api.dhsprogram.com is a no-auth public REST API; capture-time uses httpx with a real User-Agent."
+}

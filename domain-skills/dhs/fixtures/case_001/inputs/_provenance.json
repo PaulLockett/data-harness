@@ -1,0 +1,18 @@
+{
+  "target_dhs_country_code": "KE",
+  "target_iso2_country_code": "KE",
+  "target_iso3_country_code": "KEN",
+  "target_country_name": "Kenya",
+  "target_indicator_id": "FE_FRTR_W_TFR",
+  "target_indicator_name_substring": "Total fertility rate",
+  "target_first_survey_id": "KE1989DHS",
+  "target_first_survey_year": 1989,
+  "target_first_survey_tfr": 6.7,
+  "target_implementing_org": "National Council for Population Development (NCPD)",
+  "target_min_n_surveys": 5,
+  "target_notes": "Kenya total fertility rate 15-49 across all DHS surveys 1989-present. The TFR indicator (FE_FRTR_W_TFR per DHS Standard Indicator List) measures children per woman. Kenya's first DHS in 1989 reported TFR=6.7 (a widely cited fertility benchmark; subsequent surveys document Kenya's fertility transition). Captured the indicator data + country metadata + survey list + indicator metadata from api.dhsprogram.com (no auth required for read access).",
+  "captured_at_utc": "2026-04-27T03:05:00Z",
+  "captured_from": "https://api.dhsprogram.com/rest/dhs/data?indicatorIds=FE_FRTR_W_TFR&countryIds=KE&perPage=50&f=json",
+  "capture_method": "GET 4 endpoints from api.dhsprogram.com: /data (TFR values across surveys), /countries (Kenya metadata with ISO/UN codes), /surveys (9 Kenya DHS survey records since 1989), /indicators (TFR indicator definition). All public no-auth, ~14 KB total.",
+  "files": ["indicator_data.json", "country.json", "surveys.json", "indicator_meta.json"]
+}
