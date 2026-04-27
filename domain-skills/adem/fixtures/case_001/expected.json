@@ -1,0 +1,38 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.facility.name", "type": "string", "min_length": 5, "max_length": 200},
+    {"path": "$.facility.adem_master_id", "type": "string", "regex": "^[0-9]{4,8}$"},
+    {"path": "$.facility.location.county", "type": "string",
+     "in_set": [
+       "AUTAUGA","BALDWIN","BARBOUR","BIBB","BLOUNT","BULLOCK","BUTLER","CALHOUN",
+       "CHAMBERS","CHEROKEE","CHILTON","CHOCTAW","CLARKE","CLAY","CLEBURNE","COFFEE",
+       "COLBERT","CONECUH","COOSA","COVINGTON","CRENSHAW","CULLMAN","DALE","DALLAS",
+       "DEKALB","ELMORE","ESCAMBIA","ETOWAH","FAYETTE","FRANKLIN","GENEVA","GREENE",
+       "HALE","HENRY","HOUSTON","JACKSON","JEFFERSON","LAMAR","LAUDERDALE","LAWRENCE",
+       "LEE","LIMESTONE","LOWNDES","MACON","MADISON","MARENGO","MARION","MARSHALL",
+       "MOBILE","MONROE","MONTGOMERY","MORGAN","PERRY","PICKENS","PIKE","RANDOLPH",
+       "RUSSELL","SHELBY","ST. CLAIR","SUMTER","TALLADEGA","TALLAPOOSA","TUSCALOOSA",
+       "WALKER","WASHINGTON","WILCOX","WINSTON"
+     ]},
+    {"path": "$.facility.location.state", "type": "string", "in_set": ["AL"]},
+    {"path": "$.facility.primary_media", "type": "string",
+     "in_set": ["Air", "Water", "Land", "Multi"]},
+    {"path": "$.facility", "type": "object",
+     "key_set_includes": ["name", "adem_master_id", "location", "operator", "primary_media"]},
+    {"path": "$.permits", "type": "list", "min_size": 1, "max_size": 50},
+    {"path": "$.permits[*].permit_number", "type": "string", "min_length": 3, "for_all": true},
+    {"path": "$.recent_documents", "type": "list", "min_size": 1, "max_size": 200},
+    {"path": "$.recent_documents[*].url", "type": "string",
+     "regex": "^http://lf\\.adem\\.alabama\\.gov/weblink/DocView\\.aspx", "for_all": true},
+    {"path": "$.recent_documents[*].date", "type": "string",
+     "regex": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "for_all": true},
+    {"path": "$.captured_from", "type": "string",
+     "regex": "^https://app\\.adem\\.alabama\\.gov/eFile/"},
+    {"path": "$.facility.name",
+     "embedding_cosine_to": "International Paper Riverdale paper mill, Selma, Alabama, Dallas County",
+     "min": 0.55},
+    {"path": "$", "type": "object",
+     "key_set_includes": ["facility", "permits", "recent_documents", "captured_from", "captured_at_utc"]}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 4,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": [],
+  "notes": "Once embedding_cosine_to is wired (Phase 2d revisit), add requires_models: ['sentence-transformers/all-MiniLM-L6-v2'] so the case is skipped-below-floor on profiles without local embeddings."
+}
