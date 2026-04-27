@@ -1,13 +1,26 @@
 """data-harness models — per-primitive resolve tables keyed by regime.
 
-Per spec §13 / §18. Keep ≤300 lines. v0 ships RESOLVE TABLES + a stub resolve()
-that raises NotImplementedError when actually called for a model. The cassette
-machinery in check_skill.py replays predicate-relevant calls without ever
-invoking resolve() for v0 fixtures, so this is forward-compatible scaffolding.
+Capability-aware foundation-model resolution. Every primitive that
+needs a model (`vlm`, `llm`, `embed`, `rerank`, `ocr`, `transcribe`,
+`vad`, `nli`, `pii`) calls `models.resolve(kind, caps)` instead of
+hard-coding a provider. The resolve table maps each primitive ×
+hardware regime to an ordered chain of model identifiers (hosted-API
+endpoints + local Hugging Face fallbacks), so the same skill code
+runs on a TINY laptop, a SERVER-MULTI cluster, or a HOSTED-ONLY box
+without a single regime check inside the skill itself.
 
-Phase 2d (quantify family) is the first phase that will actually USE resolve()
-on a real fixture (uncertainty / calibrate may need an embedder). We wire the
-real client lookups then.
+Discipline: hard-fail on unfittable, WARN on non-primary pick, never
+silently swap kinds (asking for `vlm` and getting an `llm` would be
+a contract break).
+
+The current snapshot ships RESOLVE TABLES + a stub `resolve()` that
+raises NotImplementedError until the cassette layer wires its first
+real client. The cassette machinery in `check_skill.py` replays
+predicate-relevant calls without ever invoking `resolve()` for the
+v0 green path, so this module is forward-compatible scaffolding.
+The first skill that actually needs a model (likely an embedder for
+a quantify-family case like `uncertainty` or `calibrate`) will land
+the real client lookups.
 """
 from __future__ import annotations
 
@@ -31,7 +44,11 @@ class CapabilityError(RuntimeError):
 
 
 # Per-primitive resolve table: regime → ordered chain of model identifiers.
-# Pinned-revision SHAs go here in production (per spec §13). v0 uses logical names.
+# Production deployments should pin to revision SHAs (e.g.
+# `hf:Qwen/Qwen2.5-VL-3B-Q4_K_M@<sha>`) so the same physical bytes
+# resolve every time. The current snapshot uses logical names for
+# readability; revision-pinning lands when the first model-using
+# skill records its cassette.
 RESOLVE_TABLE = {
     "vlm": {
         "TINY":         ["hosted:gemini-2.5-flash"],
@@ -124,11 +141,17 @@ def _override_model(primitive: str) -> str | None:
 def resolve(primitive: str, c: "_caps_mod.Capabilities") -> Callable:
     """Return a callable that takes (input, **opts) for `primitive` on caps `c`.
 
-    Per spec §13:
-    - Explicit override via DH_<KIND>_MODEL.
-    - Else hosted API if key + headroom (and not DH_FORCE_LOCAL).
-    - Else regime-default local fallback (HF download on first use, gated by should_download).
-    - Walks the chain in order; WARN on non-primary; CapabilityError on no fit.
+    Resolution order:
+    - Explicit override via `DH_<KIND>_MODEL` env var (e.g. `DH_VLM_MODEL=hosted:gpt-5`).
+    - Hosted API if the corresponding key is present + provider has
+      headroom (rate-limit + monthly-budget room), unless `DH_FORCE_LOCAL=1`.
+    - Else the regime-default local fallback. HF downloads happen on
+      first use and are gated by `should_download(model_size_gb, caps,
+      deadline)` so a 6-hour pull against a 4-hour deadline routes to
+      hosted instead.
+    - Walks the chain in order; WARNs the caller when the picked model
+      is not the primary; raises `CapabilityError` if nothing in the
+      chain fits the current capabilities.
     """
     if primitive not in RESOLVE_TABLE:
         raise CapabilityError(primitive, c.regime, suggested_downgrade="(unknown primitive)")
@@ -152,13 +175,20 @@ def resolve(primitive: str, c: "_caps_mod.Capabilities") -> Callable:
 
 
 def _make_client(model_id: str, primitive: str, c, *, primary: bool) -> Callable:
-    """Return a callable that invokes `model_id` for `primitive`. v0 stubs."""
+    """Return a callable that invokes `model_id` for `primitive`.
+
+    Stub until the first model-using skill records its cassette and
+    wires the real client. The `embedding_cosine_to` predicate type
+    is the only model-using predicate currently in the contract; it
+    is skipped with a stderr note when no resolved client is available,
+    so the green path stays foundation-model-free.
+    """
     def _stub(*args, **kwargs):
         raise NotImplementedError(
-            f"resolve({primitive}) → {model_id}: real client not wired for v0. "
-            f"Phase 2d (quantify) is the first to need it. For check-skill predicates, "
-            f"`embedding_cosine_to` is the only model-using predicate type and is "
-            f"currently skipped with a stderr note in v0."
+            f"resolve({primitive}) → {model_id}: real client not yet wired. "
+            f"For check-skill predicates, `embedding_cosine_to` is the only "
+            f"model-using predicate type and is currently skipped with a "
+            f"stderr note."
         )
     _stub.__name__ = f"{primitive}_via_{model_id}"
     return _stub

@@ -21,7 +21,7 @@ dh <<'PY'
 PY
 ```
 
-## The four super-skill families (spec §6)
+## The four super-skill families
 
 - **Family 1 — `glance`:** `glance`, `distribution`, `drift`. *What's in the data?*
 - **Family 2 — `validate`:** `grain`, `join`, `split`, `leakage`, `schema`. *Are my assumptions sound?*
@@ -30,23 +30,23 @@ PY
 
 Plus two hygiene wrappers: `plan`, `reflect`.
 
-## The skill-fixture contract (spec §11)
+## The skill-fixture contract
 
-Every skill is a folder: `<skill>/{SKILL.md, fixtures/case_NNN/{inputs/, expected.json, optional floor.json|tolerances.json|cache.json|expected_strict.json}}`. Predicates in `expected.json` are mandatory. `dh check-skill <skill>` is the hard gate.
+Every skill is a folder: `<skill>/{SKILL.md, fixtures/case_NNN/{inputs/, expected.json, optional floor.json|tolerances.json|cache.json|expected_strict.json}}`. Predicates in `expected.json` are mandatory and must encode externally-citable facts about the target — a registered identifier, a published value, a documented schema, a physical-law range — not just whatever the skill happens to produce. `dh check-skill <skill>` is the hard gate.
 
-## Capabilities, regimes, and adaptivity (spec §14)
+## Capabilities, regimes, and adaptivity
 
-Skills query `caps()` for live Capabilities, query computed flags (`caps.has_gpu`, `caps.ram_available_bytes`, `caps.is_offline`), and derive numerics via the helper `workers_for(caps(), kind)`, `batch_size_for(caps(), model_bytes, per_seq_bytes)`, etc. **Skills MUST NOT branch on `caps.regime ==`** — that's a strong-constraint violation; the linter rejects it.
+Skills query `caps()` for live Capabilities, query computed flags (`caps.has_gpu`, `caps.ram_available_bytes`, `caps.is_offline`), and derive numerics via the helper `workers_for(caps(), kind)`, `batch_size_for(caps(), model_bytes, per_seq_bytes)`, etc. **Skills MUST NOT branch on `caps.regime ==`** — that's a strong-constraint violation; the linter rejects it. Branching on the concrete flags is what lets the same skill code run on a TINY laptop, a SERVER-MULTI cluster, and a HOSTED-ONLY box without a single regime check.
 
-## Model resolution and local fallbacks (spec §13)
+## Model resolution and local fallbacks
 
 Every foundation-model primitive (`vlm`, `llm`, `embed`, ...) resolves through `models.resolve(kind, caps)`. Hosted-API → HF local fallback chain keyed by regime. Hard-fail on unfittable, WARN on non-primary pick. Cassettes (`cache.json`) replay during `check-skill`; never live API hits.
 
-## Time, deadlines, and budget propagation (spec §15)
+## Time, deadlines, and budget propagation
 
-Use `Deadline` and `Budget` (absolute `time.monotonic()`). Descend semantics: child's deadline = `min(parent, now + child_seconds)`. `with budget(seconds=N) as b: ...` for scoped time + dollar caps.
+Use `Deadline` and `Budget` (absolute `time.monotonic()`). Descend semantics: child's deadline = `min(parent, now + child_seconds)`. `with budget(seconds=N) as b: ...` for scoped time + dollar caps. Never use `signal.SIGALRM`, raw durations, or wall-clock — the deadline math depends on the absolute-monotonic invariant.
 
-## Two paths for AI-sees-image (spec §13)
+## Two paths for AI-sees-image
 
 - **`image_show(img)`** — orchestrating Claude Code's eyes. No model call, no cost.
 - **`vlm(image, prompt) -> str`** — batch programmatic VLM call. Real cost, real latency.
@@ -69,13 +69,13 @@ If you write working code that solves a real problem, file it as a skill. Extrac
 
 ## Design constraints
 
-- Don't add a manager/supervisor/orchestrator/config_system/plugin layer (§6).
-- Don't add method-specific skills (DiD, target encoding, etc.) — those go in sub-packages (§3).
-- Don't ship a skill without a fixture (§11).
-- Don't hardcode a single model provider in helpers.py (§13).
-- Don't read `psutil`/`torch.cuda` directly from a skill (§14).
-- Don't use `signal.SIGALRM`, raw durations, or wall-clock for deadlines (§15).
-- Don't skip `should_download()` before HF pull (§15).
+- Don't add a manager / supervisor / orchestrator / config_system / plugin layer. The substrate is flat on purpose — `helpers.py` is the substrate, `daemon.py` runs it, `check_skill.py` validates fixtures, `models.py` resolves model primitives. Adding a coordination layer above that breaks the flat-helpers discipline.
+- Don't add method-specific skills (DiD, target encoding, propensity scoring, etc.) inside the four super-skill families. Those go in sub-packages within the relevant family — e.g. a DiD primitive lives under `quantify/uncertainty/did/`, not as a top-level interaction-skill.
+- Don't ship a skill without a fixture. `<skill>/fixtures/case_NNN/expected.json` is mandatory and must contain at least one positive predicate.
+- Don't hardcode a single model provider in `helpers.py`. Every primitive that needs a model resolves through `models.resolve(kind, caps)`.
+- Don't read `psutil` / `torch.cuda` / nvidia-ml-py directly from a skill. Use `caps()` so the abstraction handles cgroup limits, MPS vs CUDA, container vs bare-metal, etc.
+- Don't use `signal.SIGALRM`, raw durations, or wall-clock time for deadlines. Use the `Deadline` / `Budget` types — the descend semantics depend on the absolute-monotonic invariant.
+- Don't skip `should_download()` before pulling a model weight. A 6-hour download against a 4-hour deadline must route to hosted-API instead of forcing the wait.
 
 ## Architecture
 

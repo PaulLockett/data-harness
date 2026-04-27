@@ -1,14 +1,33 @@
 """data-harness check_skill — predicate-first skill-fixture validator.
 
-Per spec §11 / §18. Keep ≤200 lines.
+The hard gate. Every skill ships with one or more `fixtures/case_*/`
+folders containing `inputs/`, `expected.json` (predicates the output
+must satisfy), optional `floor.json` (hardware/feature floor — skip
+this case if the host can't run it), optional `cache.json` (replay
+cassette so model-using primitives never hit live APIs during checks),
+and an optional `skill.py` whose `run(inputs_dir) -> dict` produces
+the candidate output (the identity-load fallback uses
+`inputs/record.json` for cases that don't need a transform layer).
+
+Predicate-first means the contract is in `expected.json`, not in
+byte-exact comparisons or stored snapshots — predicates encode
+externally-citable facts about the target (a registered identifier,
+a published value, a documented schema, a physical-law range) so the
+case fails when either the captured data OR the skill drifts off the
+ground truth.
 
 Behavior:
 - Discover all `fixtures/case_*/` under <skill-path>.
-- For each case, evaluate `expected.json` predicates against the skill's output
-  (or against `inputs/record.json` if no skill code is present — identity case).
+- For each case, evaluate `expected.json` predicates against the skill's
+  output (or against `inputs/record.json` if no `skill.py` is present
+  — identity case).
 - Honor `floor.json` (skipped-below-floor on inadequate hardware).
-- Replay `cache.json` cassettes for any model-using primitives (no live calls).
-- Reject trivial-predicate sets (linter, §18 acceptance criterion).
+- Replay `cache.json` cassettes for any model-using primitives — no
+  live API hits during `dh check-skill` runs.
+- Reject trivial-predicate sets via a linter: a fixture asserting only
+  `type:any` would tautologically pass, and is rejected. At least one
+  positive predicate (`regex` / `in_set` / `in_range` /
+  `key_set_includes` / `embedding_cosine_to`) must be present.
 """
 from __future__ import annotations
 

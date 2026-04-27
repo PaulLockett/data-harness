@@ -1,7 +1,11 @@
 """dh models — list / which / pull / clear local model weights.
 
-Per spec §13. v0: thin scaffolding around RESOLVE_TABLE; pull is NotImplemented
-until Phase 2d wires real HF downloads (with should_download() gating).
+Thin scaffolding around `models.RESOLVE_TABLE`: `list` shows every
+primitive's resolve chain across all regimes, `which <primitive>`
+prints the model that would resolve right now under the current
+Capabilities. `pull` and `clear` are NotImplemented until the first
+model-using skill lands real HF downloads (gated by
+`helpers.should_download` against the live deadline + budget).
 """
 from __future__ import annotations
 
@@ -33,9 +37,9 @@ def main(argv: list) -> int:
         print(json.dumps({"primitive": prim, "regime": c.regime, "chain": chain, "picked": chain[0]}, indent=2))
         return 0
     if op == "pull":
-        print("dh models pull: not yet implemented (Phase 2d). Use cassette replay for v0.", file=sys.stderr)
+        print("dh models pull: not yet implemented. Use cassette replay (cache.json per fixture) for now.", file=sys.stderr)
         return 1
     if op == "clear":
-        print("dh models clear: not yet implemented (no models pulled in v0).", file=sys.stderr)
+        print("dh models clear: not yet implemented (no models pulled — green path is foundation-model-free).", file=sys.stderr)
         return 1
     print(f"unknown models op: {op}", file=sys.stderr); return 2

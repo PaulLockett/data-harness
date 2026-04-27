@@ -1,7 +1,15 @@
 """dh caps — pretty-print Capabilities snapshot. Subcommand of run.py.
 
-Used by spec §17 smoke test: `uv run dh caps` prints sensible Capabilities.
-Also exposes `--dry-run-resolve <skill-path>` (spec §18 acceptance).
+`uv run dh caps` is the canonical install smoke test — it prints the
+typed Capabilities snapshot for the current host (regime, CPU/RAM/GPU,
+network, scratch dir, declared profile overrides). If this prints a
+sensible block, the installation is alive.
+
+`uv run dh caps --dry-run-resolve <skill-path>` walks the skill's
+declared `floor.json` against the live Capabilities + walks each
+required model primitive through `models.resolve` WITHOUT consuming
+compute, reporting `(picked, fits, reason)` per primitive — useful
+for verifying a fixture would run on this host before paying the cost.
 """
 from __future__ import annotations
 

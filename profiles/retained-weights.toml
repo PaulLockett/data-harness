@@ -1,11 +1,13 @@
 # retained-weights.toml — manifest of model weights required for offline replay
 #
-# Per spec §13 + §15, when a skill resolves a foundation-model primitive
-# (`embed`, `llm`, `vlm`, `rerank`, `ocr`, `transcribe`, `vad`, `nli`,
-# `pii`), the resolved client either calls a hosted API (recorded once
-# via the cassette layer) or loads a local weight file. This manifest
-# declares which local weights MUST be retained on disk to replay every
-# fixture in `make check-all-skills` from cache.
+# When a skill resolves a foundation-model primitive (`embed`, `llm`,
+# `vlm`, `rerank`, `ocr`, `transcribe`, `vad`, `nli`, `pii`) via
+# `models.resolve(kind, caps)`, the resolved client either calls a
+# hosted API (recorded once via the cassette layer for replay during
+# `dh check-skill`) or loads a local weight file from the Hugging Face
+# cache. This manifest declares which local weights MUST be retained
+# on disk to replay every fixture in `make check-all-skills` from
+# cache without a live network call.
 #
 # Acceptance gate: deleting any weight NOT in this list (specifically
 # everything else under `~/.cache/huggingface/hub/`) MUST leave
@@ -49,17 +51,23 @@ pii = []
 #   # ~22 MB safetensors + ~50 KB tokenizer files
 
 [budget]
-# Indicative budget if any future model-using case is added. Stays well
-# inside the 20 GB total HarnessMaker/ cap.
+# Indicative budget if any future model-using case is added. The
+# substrate's `helpers.should_download(model_size_gb, caps, deadline)`
+# refuses pulls that would breach this when summed with the existing
+# retained-weights total.
 max_total_weights_mb = 5000   # 5 GB headroom
 budget_used_mb = 0
 budget_remaining_mb = 5000
 
-# Notes for future-me:
-#  - Hosted-API + cassette is the spec-default path. Local weights are
+# Discipline for future maintainers:
+#  - Hosted-API + cassette is the default path. Local weights are
 #    only declared here when laptop-cpu / laptop-gpu / workstation
 #    profiles need offline replay AND no hosted-API alternative is
-#    available.
+#    available for that primitive.
 #  - Smallest-viable-int4-quant per class. One embedder, optionally one
 #    tiny LLM, optionally one tiny VLM. Never a 7B+ model in the retained
 #    list unless a domain case demonstrably requires it.
+#  - Hosted-API + cassette stays the right default because cassettes
+#    replay deterministically across hosts (laptop, CI, server) without
+#    requiring each host to have the weights or the network bandwidth
+#    to download them.

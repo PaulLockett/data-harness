@@ -1,8 +1,9 @@
 """data-harness — substrate primitives across 10 tiers + capability-derived helpers.
 
-Per spec §16. Keep this file ≤900 lines (acceptance criterion §18). Heavy deps
-are imported lazily inside primitives so import cost stays cheap and the daemon
-cold-starts in <1s without loading torch.
+Self-imposed cap: keep this file ≤900 lines so the substrate stays
+reviewable end-to-end. Heavy deps (torch, transformers, astropy, zarr)
+are imported lazily inside primitives so import cost stays cheap and
+the daemon cold-starts in <1s without loading torch.
 
 Tier 1   compute / IO
 Tier 2   tabular spine (DuckDB + Polars)
@@ -221,8 +222,10 @@ def load(uri, **opts):
     bytes-like binary → bytes
     s3:// or postgres:// → DuckDB query
 
-    Polars is imported lazily only on tabular branches so plaintext loads
-    work without polars installed (Phase 0/2a smoke).
+    Polars is imported lazily only on tabular branches so plaintext
+    loads work without polars installed (matters for the smoke-test
+    install depth where the user only pip-installed psutil/cpuinfo/
+    duckdb/polars).
     """
     p = str(uri)
     low = p.lower()
@@ -345,8 +348,10 @@ def peek(obj, n: int = 5) -> str:
 def glance(obj, n: int = 5) -> str:
     """Deep type-aware verification. Returns a multi-line summary fit for inspection.
 
-    Per spec §18: must handle Polars df, pandas df, dict, list, PIL Image, bytes,
-    Path, np.ndarray, GeoDataFrame, Graph, HDUList, Zarr Array.
+    Must handle every artifact a skill produces: Polars df, pandas df,
+    dict, list, PIL Image, bytes, Path, np.ndarray, GeoDataFrame, Graph,
+    HDUList, Zarr Array. The agent calls glance() after every meaningful
+    transform so it verifies what it just produced before assuming.
     """
     # tabular
     try:
@@ -423,7 +428,13 @@ def glance(obj, n: int = 5) -> str:
 
 
 def assert_(cond, msg: str = "assertion failed"):
-    """Spec §6 'assert' family — exposes predicate machinery as callable."""
+    """The 'assert' refute-family primitive — exposes predicate machinery as callable.
+
+    Refute family (assert / placebo / overfit_one_batch / saturation /
+    disaggregate) answers "could I be wrong?" by attacking your own
+    result. assert_ is the primitive contract: skills compose it to
+    encode invariants the answer must satisfy.
+    """
     if not cond:
         raise AssertionError(msg)
     return True
@@ -457,11 +468,11 @@ def pdf_pages(path):
 
 
 def pdf_render(path, *, dpi: int = 150):
-    raise NotImplementedError("pdf_render: implement in Phase 2 when first PDF skill needs it")
+    raise NotImplementedError("pdf_render: implement when the first PDF-rendering skill lands")
 
 
 def pdf_layout(path):
-    raise NotImplementedError("pdf_layout: implement when ADEM PDFs need parsing")
+    raise NotImplementedError("pdf_layout: implement when the first layout-aware PDF skill lands")
 
 
 def docx_open(path):
@@ -686,4 +697,4 @@ def stream_iter(source, **opts):
     raise NotImplementedError("stream_iter: implement for ZTF Avro stream")
 
 
-# ─── End of helpers.py — keep ≤900 lines per spec §18 ───────────────────────
+# ─── End of helpers.py — keep ≤900 lines so the substrate stays reviewable ──

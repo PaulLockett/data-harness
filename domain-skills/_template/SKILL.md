@@ -1,6 +1,6 @@
 # _template — domain skill scaffold
 
-Copy this folder to start a new domain skill. Per spec §11, the canonical shape is:
+Copy this folder to start a new domain skill. The canonical shape is:
 
 ```
 <domain-name>/

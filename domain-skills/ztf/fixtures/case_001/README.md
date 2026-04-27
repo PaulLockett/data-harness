@@ -5,8 +5,10 @@
 A 5-alert sample from the Zwicky Transient Facility's public alert archive
 for one observation night. The case exercises:
 
-- **Avro-format capture** — first Phase 4 domain to use a binary
-  serialization other than FITS / JSON / `$`-delimited ASCII.
+- **Avro-format capture** — exercises the binary-serialization branch
+  of the substrate, distinct from FITS (TESS, Vesuvius), JSON
+  (USAspending, EDGAR, DHS), `$`-delimited ASCII (FAERS), and PDF
+  (ADEM).
 - **Schema-version-locked predicates** — the ZTF Avro schema is
   versioned and publicly documented at
   `https://github.com/ZwickyTransientFacility/ztf-avro-alert`. Predicates

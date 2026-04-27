@@ -40,9 +40,9 @@ text), so downstream analysis trusts that the documents are what they claim.
 
 ## Output (skill.py contract)
 
-The skill is currently identity-with-validation in v0 — `record.json` is the
-canonical shape directly. Phase 4+ may add an actual transform layer when the
-input shape evolves (e.g., raw HTML → canonical shape).
+The skill is currently identity-with-validation — `record.json` is the
+canonical shape directly. Future cases may add an actual transform layer
+when the input shape evolves (e.g., raw HTML → canonical shape).
 
 Canonical Facility shape:
 

@@ -102,7 +102,7 @@ agencies.NASA + award_type_codes=A/B/C/D + sort=Award Amount desc`.
 ## Why USAspending
 
 - **No auth, no scraping, no ZIPs.** Pure JSON REST API; the simplest
-  capture path of any Phase 4 domain.
+  capture path of any domain in the harness.
 - **Data dictionary is publicly maintained.** Predicates anchored to
   enums and required-keys-lists from the USAspending API wiki are
   externally checkable without dependence on the captured response.

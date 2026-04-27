@@ -5,8 +5,8 @@ Tested on macOS arm64 (Apple Silicon) and Linux x86_64 with Python 3.11+ and `uv
 ## 1. Clone and resolve
 
 ```bash
-git clone <this repo>
-cd HarnessMaker/data-harness
+git clone https://github.com/PaulLockett/data-harness
+cd data-harness
 uv lock                  # ~5s, no installs
 ```
 
@@ -37,7 +37,15 @@ uv run dh check-skill domain-skills/_template
 
 ## Resource budget
 
-This project has a hard 20 GB final-footprint cap (per the working agreement).
-`make models` is opt-in only. Cassettes (`cache.json` per fixture) are the
-primary mechanism for replay during `check-skill`. Model weights live in
-`~/.data-harness/models/` and are pruned to the retain-list at Phase-5 cleanup.
+The substrate aims for a tight resting-state footprint — code + curated
+local model weights + interaction-skill fixtures + domain-skill fixtures
++ cassettes — with everything else (runtime scratch, raw captures that
+were filtered down to a persisted subset, abandoned model downloads)
+cleaned up rather than left to accumulate.
+
+`make models` is opt-in only. Cassettes (`cache.json` per fixture) are
+the primary mechanism for replay during `check-skill`, so a green
+`check-skill` run never depends on local model weights. Model weights
+that are required for offline replay live in `~/.data-harness/models/`
+and are declared in `profiles/retained-weights.toml` — anything else
+under `~/.cache/huggingface/hub/` is fair game to prune.

@@ -73,8 +73,9 @@ Other spoofs that must fail (matrix for case_002+ regression):
 
 ## What this case does NOT exercise
 
-- Water permit (Riverdale's water permit `24-06` was on page 1 of the name-search
-  in Phase 1 but isn't returned by the permit-number search for `104-0003`)
+- Water permit (Riverdale's water permit `24-06` shows up in the
+  facility-name search but isn't returned by the permit-number search
+  for `104-0003`, which is the air-permit slot)
 - AEPACS profile pull (auth-walled)
 - e-Maps GIS / spatial
 - Enforcement / Inspection categories (none on page 1 for this permit)

@@ -2,12 +2,20 @@
 # Every other profiles/*.toml inherits from base via `extends = "base"`.
 # Any field omitted here defers to detected values from capabilities.py.
 
-# Resource budget — Paul's hard cap for HarnessMaker work.
+# Resource budget — defaults are conservative; override per-profile.
+# Skills query `caps.declared.storage_budget_gb` etc. via `caps()`, and
+# `helpers.should_download(model_size_gb, caps, deadline)` refuses pulls
+# that would breach `storage.budget_gb`.
 [storage]
 budget_gb = 20
 
+# Live ceiling caps how much of the host the harness can use AT ONCE
+# while a skill is running. The reserved-for-user fraction is held back
+# from CPU / RAM / disk-IO / network so the host stays usable for
+# whoever else is on it. Workers spawned via `helpers.workers_for(caps,
+# kind)` derive their count from this fraction.
 [live]
-ceiling = 0.40       # cap on disk/CPU/RAM/network during work
+ceiling = 0.40
 reserved_for_user = 0.20
 
 # Memory watermarks are computed from observed RAM by default; override here only if needed.
