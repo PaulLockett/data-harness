@@ -1,0 +1,7 @@
+[
+  {"step": "load data",       "outcome": "pass", "duration_s": 0.4},
+  {"step": "validate schema", "outcome": "fail", "duration_s": 0.1, "error": "schema mismatch"},
+  {"step": "transform",       "outcome": "pass", "duration_s": 0.7},
+  {"step": "predict",         "outcome": "fail", "duration_s": 0.3, "error": "schema mismatch"},
+  {"step": "report",          "outcome": "pass", "duration_s": 0.2}
+]

@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.goal", "type": "string", "min_length": 5, "max_length": 500},
+    {"path": "$.n_steps", "type": "int", "in_range": [1, 50]},
+    {"path": "$.steps", "type": "list", "min_size": 1, "max_size": 50},
+    {"path": "$.estimated_minutes", "type": "int", "in_range": [1, 10000]},
+    {"path": "$.kind", "type": "string", "in_set": ["rule_based", "llm"]},
+    {"path": "$", "type": "object", "key_set_includes": ["goal", "n_steps", "steps", "estimated_minutes", "kind"]}
+  ]
+}

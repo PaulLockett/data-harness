@@ -1,0 +1,5 @@
+[
+  {"path": "$.name", "type": "string", "min_length": 3, "in_set": ["alpha", "beta", "gamma"]},
+  {"path": "$.count", "type": "int", "in_range": [0, 100]},
+  {"path": "$.tags", "type": "list", "min_size": 1, "max_size": 10}
+]

@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.fractions", "type": "list", "min_size": 4, "max_size": 4},
+    {"path": "$.n_at_fraction", "type": "list", "min_size": 4, "max_size": 4},
+    {"path": "$.r2_scores", "type": "list", "min_size": 4, "max_size": 4},
+    {"path": "$.r2_scores[*]", "type": "float", "in_range": [0.0, 1.0001], "for_all": true},
+    {"path": "$.delta_last", "type": "float", "in_range": [-0.5, 0.5]},
+    {"path": "$.saturation_reached", "type": "bool"},
+    {"path": "$", "type": "object", "key_set_includes": ["fractions", "n_at_fraction", "r2_scores", "delta_last", "saturation_reached"]}
+  ]
+}

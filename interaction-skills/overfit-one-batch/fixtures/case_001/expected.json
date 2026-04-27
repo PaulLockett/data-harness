@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.n", "type": "int", "in_range": [10, 100]},
+    {"path": "$.n_features", "type": "int", "in_range": [1, 20]},
+    {"path": "$.train_mse", "type": "float", "in_range": [0.0, 0.1]},
+    {"path": "$.r2", "type": "float", "in_range": [0.95, 1.0]},
+    {"path": "$.can_memorize", "type": "bool", "in_set": [true]},
+    {"path": "$", "type": "object", "key_set_includes": ["n", "n_features", "train_mse", "r2", "can_memorize"]}
+  ]
+}

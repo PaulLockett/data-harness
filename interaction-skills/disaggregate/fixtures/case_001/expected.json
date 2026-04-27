@@ -1,0 +1,13 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.n_groups", "type": "int", "in_range": [2, 100]},
+    {"path": "$.groups", "type": "list", "min_size": 2, "max_size": 100},
+    {"path": "$.between_var", "type": "float", "in_range": [0.0, 1000.0]},
+    {"path": "$.within_var", "type": "float", "in_range": [0.0, 1000.0]},
+    {"path": "$.total_var", "type": "float", "in_range": [0.001, 1000.0]},
+    {"path": "$.heterogeneity_score", "type": "float", "in_range": [0.05, 1.0]},
+    {"path": "$.max_min_ratio", "type": "float", "in_range": [1.05, 100.0]},
+    {"path": "$", "type": "object", "key_set_includes": ["n_groups", "groups", "between_var", "within_var", "total_var", "heterogeneity_score", "max_min_ratio"]}
+  ]
+}

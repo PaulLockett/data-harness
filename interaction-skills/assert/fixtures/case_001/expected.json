@@ -1,0 +1,11 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.n_predicates", "type": "int", "in_range": [3, 100]},
+    {"path": "$.n_passed", "type": "int", "in_range": [3, 100]},
+    {"path": "$.n_failed", "type": "int", "in_range": [0, 0]},
+    {"path": "$.all_passed", "type": "bool", "in_set": [true]},
+    {"path": "$.results", "type": "list", "min_size": 3, "max_size": 100},
+    {"path": "$", "type": "object", "key_set_includes": ["n_predicates", "n_passed", "n_failed", "results", "all_passed"]}
+  ]
+}

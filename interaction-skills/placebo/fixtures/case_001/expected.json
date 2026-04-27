@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.n", "type": "int", "in_range": [50, 100000]},
+    {"path": "$.true_effect", "type": "float", "in_range": [-100, 100]},
+    {"path": "$.placebo_effect", "type": "float", "in_range": [0, 100]},
+    {"path": "$.placebo_ratio", "type": "float", "in_range": [0.0, 1.0]},
+    {"path": "$.placebo_passes", "type": "bool", "in_set": [true]},
+    {"path": "$.n_placebo_resamples", "type": "int", "in_range": [50, 100000]},
+    {"path": "$", "type": "object", "key_set_includes": ["n", "true_effect", "placebo_effect", "placebo_ratio", "placebo_passes"]}
+  ]
+}

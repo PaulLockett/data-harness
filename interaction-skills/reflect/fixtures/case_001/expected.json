@@ -1,0 +1,15 @@
+{
+  "schema_version": "1",
+  "predicates": [
+    {"path": "$.n_steps", "type": "int", "in_range": [1, 1000]},
+    {"path": "$.n_passed", "type": "int", "in_range": [0, 1000]},
+    {"path": "$.n_failed", "type": "int", "in_range": [0, 1000]},
+    {"path": "$.pass_rate", "type": "float", "in_range": [0.0, 1.0]},
+    {"path": "$.what_worked", "type": "list", "min_size": 1, "max_size": 1000},
+    {"path": "$.what_failed", "type": "list", "min_size": 1, "max_size": 1000},
+    {"path": "$.common_errors", "type": "list", "min_size": 1, "max_size": 10},
+    {"path": "$.next_actions", "type": "list", "min_size": 1, "max_size": 10},
+    {"path": "$.kind", "type": "string", "in_set": ["rule_based", "llm"]},
+    {"path": "$", "type": "object", "key_set_includes": ["n_steps", "n_passed", "n_failed", "pass_rate", "what_worked", "what_failed", "common_errors", "next_actions", "kind"]}
+  ]
+}
