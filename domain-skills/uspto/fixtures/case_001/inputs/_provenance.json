@@ -1,0 +1,15 @@
+{
+  "target_patent_number": "6285999",
+  "target_country_code": "US",
+  "target_application_number": "09/004,827",
+  "target_filing_date": "1998-01-09",
+  "target_grant_date": "2001-09-04",
+  "target_inventor": "Lawrence Page",
+  "target_assignee": "Leland Stanford Junior University",
+  "target_title_keywords": ["node ranking", "linked database"],
+  "target_notes": "US Patent 6,285,999 — 'Method for node ranking in a linked database'. The PageRank patent. Inventor Lawrence Page (Larry Page, Google co-founder); assignee Stanford University (the work was done while Page was a Stanford PhD student). Filed 1998-01-09; granted 2001-09-04. PageRank became the algorithmic foundation of Google's search engine; Stanford licensed the patent to Google in exchange for ~1.8 M shares of Google. Patent expired in 2018. Captured from Google Patents (USPTO data mirror) because the api.uspto.gov direct API requires an authentication token outside v0 scope.",
+  "captured_at_utc": "2026-04-27T02:05:00Z",
+  "captured_from": "https://patents.google.com/patent/US6285999/en",
+  "capture_method": "Saved the full HTML of the Google Patents page for US6285999 (1.8 MB). Google Patents indexes USPTO data verbatim and exposes structured metadata via a comprehensive set of <meta name='citation_*'> and <meta name='DC.*'> tags. The skill extracts these meta tags at runtime and validates against externally-known facts about the PageRank patent (inventor, assignee, filing/grant dates, application number, references). USPTO's own api.uspto.gov returns 403 'Missing Authentication Token' without registration; case_002 may wire that auth path.",
+  "files": ["patent.html"]
+}

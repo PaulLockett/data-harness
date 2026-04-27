@@ -1,0 +1,8 @@
+{
+  "min_ram_gb": 2,
+  "min_vram_gb": 0,
+  "requires_apis": [],
+  "requires_models": [],
+  "requires_features": [],
+  "notes": "Pure HTML parse via stdlib re module. The captured patent.html is 1.8 MB; runtime memory under 100 MB. Capture-time uses httpx with follow_redirects to fetch from patents.google.com. The Google Patents page is the data source because USPTO's api.uspto.gov requires an authentication token (returns 403 'Missing Authentication Token' without registration); case_002 may wire that path."
+}
