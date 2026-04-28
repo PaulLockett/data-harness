@@ -1,110 +1,93 @@
-# case_001 — International Paper – Riverdale Mill (Selma, Dallas County, AL)
+# case_001 — Statewide NPDES Construction Stormwater Longitudinal Analysis (2009-2026)
 
 ## What it captures
 
-Master ID **6298** = INTERNATIONAL PAPER COMPANY. Air permit **104-0003** —
-10 most-recent documents (Feb–Apr 2026 dates) covering RATA tests, MACT
-periodic-condition reports, T5 annual compliance certifications,
-CEMS reports, and inventory/correspondence.
+The full canonical analysis output of every electronically-recorded ADEM
+NPDES Construction General Permit (ALR100000) coverage from June 8,
+2009 through April 27, 2026. **22,325 unique construction sites,
+33,326 inspection reports, 123,424 total eFile documents** distilled
+into a single JSON object.
 
-Document type distribution:
-- `STR` (stack test report): 2
-- `MACT` (max achievable control technology): 2
-- `T5ACC` (Title V annual compliance cert): 2
-- `CORS` (corrective response): 1
-- `CORR` (correspondence): 1
-- `MONR` (monitoring report): 1
-- `CEMS` (continuous emissions monitoring): 1
+The case is **identity-with-validation**: `inputs/record.json` is the
+canonical analysis output and predicates assert its shape and
+plausibility ranges. There is no `skill.py` transform — future cases
+may add one operating on raw inputs.
 
-Sizes range 394 KB – 5.85 MB; total ~11 MB.
+## Key headline numbers (as of capture date)
+
+- **22,325** sites started
+- **12,654** with at least one ADEM inspection on file
+- **8,519** with an inspector-cited BMP problem in writing
+- **3,571** with formal enforcement action
+- **6,230** sites with cited problems and **no enforcement filed** —
+  the systemic ADEM enforcement gap
 
 ## Provenance — capture method
 
-Captured 2026-04-27 via cloud-isolated browser-harness:
+The upstream eFile scraping and Laserfiche document download is the
+responsibility of `browser-harness/domain-skills/adem/`. This skill
+consumes that output:
 
-1. eFile search by **Permit Number = "104-0003"** (narrower than facility-name
-   search; resolved in 56s where name search timed out at 5+ minutes).
-2. All 11 result rows on page 1 returned. Filtered to
-   `master_id == "6298" AND county == "DALLAS"` → 10 Riverdale docs.
-3. For each row, fetched the actual PDF binary from
-   `https://lf.adem.alabama.gov/WebLink/ElectronicFile.aspx?docid=<id>&dbid=0&repo=ADEM&pdfView=true`
-   using the browser's session cookies. (The row's `DocView.aspx?id=...` URL
-   returns the WebLink viewer HTML, NOT the PDF — discovered during the
-   capture; documented in `Browserstuff/browser-harness/domain-skills/adem/efile-search.md`.)
-4. Each PDF parsed with pypdf, first 10 pages of text extracted, validated
-   against target identifiers `["INTERNATIONAL PAPER", "6298", "DALLAS",
-   "Selma", "Riverdale", "104-0003"]`.
+1. **Metadata phase** (browser-harness): year-by-year HTTP postback
+   pagination of the eFile search portal filtered by Water + ALR10
+   permit prefix + 1/1 to 12/31 date range, producing
+   `rows_YYYY.jsonl` files. 18 years × ~5-10K rows/year = 123,424
+   total document metadata records.
+2. **Document download phase** (browser-harness): for each INSPR-type
+   document on a permit with at least one NOI, fetch the binary from
+   `https://lf.adem.alabama.gov/WebLink/ElectronicFile.aspx?docid=<id>&pdfView=true`
+   using the cloud browser's session cookies.
+3. **Text extraction phase** (this skill): multi-format dispatch —
+   PDFs through LiteParse OCR (capped at 12 pages per doc for
+   inspector-summary range), Open XML PowerPoint/Word/Excel through
+   native Python parsers (python-pptx, python-docx, openpyxl), legacy
+   CFB binaries through soffice → LiteParse with per-worker LibreOffice
+   profile dirs to allow parallel invocation.
+4. **BMP categorization** (this skill): regex against extracted text
+   for five BMP categories (silt fence, inlet protection, gravel
+   entrance, vegetation/slope, general BMP), with a ±200-character
+   negative-context window check to distinguish a cited problem from
+   a routine mention.
+5. **Per-permit aggregation** (this skill): collapse per-inspection
+   findings to per-site flags. "Site started" = year of first NOI.
+6. **Rollups** (this skill): yearly trend, top builders by sites and
+   by unenforced violations, BMP category counts, regional watershed
+   slices.
 
-Validation results:
-- 5/10 PDFs match a target identifier in extracted text (text-extractable PDFs)
-- 10/10 PDFs match in their ADEM-assigned filename (`6298 104-0003 ...`)
-- All 10 marked `validated = true` via the OR criterion
+Total compute time: ~24 hours for first run, ~12 hours steady state.
 
-The 5 PDFs without text matches are image-scanned (CEMS data exports, RATA
-test report scans, T5 large compliance certifications) — pypdf returns empty
-text. Their filename match is authoritative since ADEM's server assigns
-filenames based on the canonical Master ID + permit number at upload time.
+## Predicates exercised
 
-## Predicates exercised (23 total)
-
-- 5 on `facility` shape (name length, master_id regex, county in 67-set, state="AL", primary_media enum)
-- 1 on `facility` key set
-- 2 on `permits` (size, for_all permit_number length)
-- 1 on `recent_documents` size
-- 8 `for_all` on `recent_documents[*]` (laserfiche_docid 8-12 digits, file_path regex, size_bytes > 10 KB,
-  n_pages ≥ 1, sha256_prefix 16 hex chars, ISO date, eFile URL pattern, validated == true)
-- 4 on `validation` rollup (all_validated == true, n_documents in_range, target_identifiers list, key set)
-- 1 on `captured_from` URL pattern
-- 1 on top-level key set
+61 predicates covering:
+- **Top-level shape**: 13 expected keys
+- **Scope**: permit_prefix in {ALR10}, media_area in {Air,Water,Land,Multi},
+  ISO date format, years_covered range
+- **Totals**: 7 metrics, all integer with plausible ranges
+- **Yearly trend**: 5-30 entries, every entry has year in [2009,2030],
+  rates in [0,100], counts non-negative (`for_all`)
+- **Top builders**: 5-50 entries each in two ranked lists, every entry
+  has non-empty company name and integer site/inspected/cited/enforced/gap
+  fields (`for_all`)
+- **BMP categories**: all 5 known categories must be present
+- **Regional**: at least the Mobile Bay watershed entry, with proper
+  Alabama county codes (`for_all` against the 67-county set)
+- **Provenance**: captured_from regex matches eFile portal,
+  document_archive regex matches Laserfiche, captured_at_utc is ISO 8601
 
 ## Spoof verification
 
-Flipping `recent_documents[0].validated` to `false` makes check-skill fail
-with `for_all violated: value False not in set of 1`. Restoring → 23 ok.
+The predicate set rejects:
+- Single-year toy datasets (yearly_trend min_size=5)
+- Empty top-builder lists
+- Regional rollups missing required metrics
+- Captures from unrelated systems (URL pattern enforcement)
+- Counter-factual ranges (e.g. negative site counts, percentages > 100)
 
-Other spoofs that must fail (matrix for case_002+ regression):
-- `county = "COOK"` → not in 67-county set
-- `master_id = "abc"` → fails `^[0-9]{4,8}$` regex
-- `recent_documents[0].size_bytes = 500` → fails `in_range [10000, ...]` (catches
-  the 1.9 KB Laserfiche-error-HTML disguised as a PDF)
-- `recent_documents[0].file_path = "documents/missing.pdf"` (file doesn't actually
-  exist on disk) — current predicates don't enforce file existence at validation time;
-  add to case_002.
+## Future cases
 
-## What this case does NOT exercise
-
-- Water permit (Riverdale's water permit `24-06` shows up in the
-  facility-name search but isn't returned by the permit-number search
-  for `104-0003`, which is the air-permit slot)
-- AEPACS profile pull (auth-walled)
-- e-Maps GIS / spatial
-- Enforcement / Inspection categories (none on page 1 for this permit)
-- PDF body content extraction beyond the first 10 pages
-
-## When to file case_002
-
-A different facility — to verify the predicates generalize off Riverdale's
-Master ID and the validator catches a wrong-facility download.
-
-## Re-capture procedure
-
-If `record.json` is lost:
-
-```bash
-# from data-harness/
-BU_NAME=harnessmaker browser-harness <<'PY'
-start_remote_daemon("harnessmaker")
-PY
-
-# Run the capture script (from the eFile recipe in browser-harness/domain-skills/adem/):
-#   1. eFile search by permit number 104-0003 (~60s wait)
-#   2. http_get-via-browser-fetch on lf.adem.alabama.gov ElectronicFile.aspx for each row
-#   3. pypdf parse + validate
-#   4. write record.json
-
-cd Browserstuff/browser-harness && uv run python -c "
-import sys; sys.path.insert(0, '.')
-from admin import stop_remote_daemon
-stop_remote_daemon('harnessmaker')
-"
-```
+- **case_002**: a different state agency NPDES system to verify the
+  shape generalizes
+- **case_003**: a single-county or single-year slice for fast
+  development iteration
+- **case_004**: an enriched-with-vision case adding inspector-missed
+  violation columns from a vision-model verification pass

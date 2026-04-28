@@ -106,4 +106,4 @@ gpu = []
 dh = "run:main"
 
 [tool.setuptools]
-py-modules = ["run", "helpers", "daemon", "admin", "check_skill", "models", "capabilities", "deadlines"]
+py-modules = ["run", "helpers", "daemon", "admin", "check_skill", "models", "capabilities", "deadlines", "capabilities_cli", "models_cli"]

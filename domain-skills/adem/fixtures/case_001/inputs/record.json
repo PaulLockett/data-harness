@@ -1,252 +1,753 @@
 {
-  "facility": {
-    "name": "INTERNATIONAL PAPER COMPANY",
-    "adem_master_id": "6298",
-    "location": {
-      "county": "DALLAS",
-      "state": "AL"
-    },
-    "operator": "INTERNATIONAL PAPER COMPANY",
-    "primary_media": "Air"
+  "analysis": "NPDES Construction General Permit (ALR100000) longitudinal coverage",
+  "scope": {
+    "permit_prefix": "ALR10",
+    "media_area": "Water",
+    "date_start": "2009-06-08",
+    "date_end": "2026-04-27",
+    "years_covered": 17
   },
-  "permits": [
+  "totals": {
+    "sites_started": 22325,
+    "sites_inspected": 12654,
+    "sites_with_cited_problem": 8519,
+    "sites_enforced": 3571,
+    "sites_unenforced_gap": 6230,
+    "inspections_processed": 33205,
+    "inspections_with_cited_problem": 16152
+  },
+  "yearly_trend": [
     {
-      "permit_number": "104-0003",
-      "media_type_code": "Title V Air"
+      "year": 2011,
+      "sites_started": 1183,
+      "sites_inspected": 811,
+      "sites_cited_problem": 580,
+      "sites_enforced": 298,
+      "pct_inspected": 68.6,
+      "pct_enforced": 25.2
+    },
+    {
+      "year": 2012,
+      "sites_started": 1817,
+      "sites_inspected": 1302,
+      "sites_cited_problem": 935,
+      "sites_enforced": 459,
+      "pct_inspected": 71.7,
+      "pct_enforced": 25.3
+    },
+    {
+      "year": 2013,
+      "sites_started": 1306,
+      "sites_inspected": 912,
+      "sites_cited_problem": 665,
+      "sites_enforced": 273,
+      "pct_inspected": 69.8,
+      "pct_enforced": 20.9
+    },
+    {
+      "year": 2014,
+      "sites_started": 1249,
+      "sites_inspected": 787,
+      "sites_cited_problem": 603,
+      "sites_enforced": 215,
+      "pct_inspected": 63.0,
+      "pct_enforced": 17.2
+    },
+    {
+      "year": 2015,
+      "sites_started": 1326,
+      "sites_inspected": 882,
+      "sites_cited_problem": 651,
+      "sites_enforced": 277,
+      "pct_inspected": 66.5,
+      "pct_enforced": 20.9
+    },
+    {
+      "year": 2016,
+      "sites_started": 1186,
+      "sites_inspected": 812,
+      "sites_cited_problem": 572,
+      "sites_enforced": 259,
+      "pct_inspected": 68.5,
+      "pct_enforced": 21.8
+    },
+    {
+      "year": 2017,
+      "sites_started": 1430,
+      "sites_inspected": 900,
+      "sites_cited_problem": 640,
+      "sites_enforced": 237,
+      "pct_inspected": 62.9,
+      "pct_enforced": 16.6
+    },
+    {
+      "year": 2018,
+      "sites_started": 1296,
+      "sites_inspected": 841,
+      "sites_cited_problem": 557,
+      "sites_enforced": 250,
+      "pct_inspected": 64.9,
+      "pct_enforced": 19.3
+    },
+    {
+      "year": 2019,
+      "sites_started": 1419,
+      "sites_inspected": 806,
+      "sites_cited_problem": 505,
+      "sites_enforced": 192,
+      "pct_inspected": 56.8,
+      "pct_enforced": 13.5
+    },
+    {
+      "year": 2020,
+      "sites_started": 1370,
+      "sites_inspected": 657,
+      "sites_cited_problem": 407,
+      "sites_enforced": 175,
+      "pct_inspected": 48.0,
+      "pct_enforced": 12.8
+    },
+    {
+      "year": 2021,
+      "sites_started": 1745,
+      "sites_inspected": 1006,
+      "sites_cited_problem": 599,
+      "sites_enforced": 252,
+      "pct_inspected": 57.7,
+      "pct_enforced": 14.4
+    },
+    {
+      "year": 2022,
+      "sites_started": 1727,
+      "sites_inspected": 969,
+      "sites_cited_problem": 583,
+      "sites_enforced": 225,
+      "pct_inspected": 56.1,
+      "pct_enforced": 13.0
+    },
+    {
+      "year": 2023,
+      "sites_started": 1625,
+      "sites_inspected": 799,
+      "sites_cited_problem": 497,
+      "sites_enforced": 201,
+      "pct_inspected": 49.2,
+      "pct_enforced": 12.4
+    },
+    {
+      "year": 2024,
+      "sites_started": 1646,
+      "sites_inspected": 696,
+      "sites_cited_problem": 444,
+      "sites_enforced": 166,
+      "pct_inspected": 42.3,
+      "pct_enforced": 10.1
+    },
+    {
+      "year": 2025,
+      "sites_started": 1650,
+      "sites_inspected": 447,
+      "sites_cited_problem": 266,
+      "sites_enforced": 86,
+      "pct_inspected": 27.1,
+      "pct_enforced": 5.2
     }
   ],
-  "recent_documents": [
+  "top_builders_by_sites": [
     {
-      "date": "2026-04-14",
-      "type": "STR",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105888340",
-      "file_name": "6298 104-0003 047 04-14-2026 STR SPB PB3 RATA ADR",
-      "file_path": "documents/6298_104-0003_047_04-14-2026_STR_SPB_PB3_RATA_ADR.pdf",
-      "sha256_prefix": "ac1164c28d1aad06",
-      "n_pages": 9,
-      "size_bytes": 394318,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105888340&dbid=0",
-      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
-      "text_matches": [],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "ALABAMA DEPARTMENT OF TRANSPORTATION",
+      "sites": 924,
+      "inspected": 180,
+      "cited_problem": 119,
+      "enforced": 23,
+      "unenforced_gap": 109
     },
     {
-      "date": "2026-03-18",
-      "type": "MACT",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105877362",
-      "file_name": "6298 104-0003 047 03-18-2026 MACT SPB 1Q2026 COND TEST ADR",
-      "file_path": "documents/6298_104-0003_047_03-18-2026_MACT_SPB_1Q2026_COND_TEST_ADR.pdf",
-      "sha256_prefix": "0a034c7dc5e8c5ad",
-      "n_pages": 1,
-      "size_bytes": 481555,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877362&dbid=0",
-      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) March 18, 2026",
-      "text_matches": [
-        "6298",
-        "Selma",
-        "Riverdale",
-        "104-0003"
-      ],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "ALABAMA POWER COMPANY",
+      "sites": 631,
+      "inspected": 73,
+      "cited_problem": 57,
+      "enforced": 8,
+      "unenforced_gap": 51
     },
     {
-      "date": "2026-03-17",
-      "type": "STR",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105868174",
-      "file_name": "6298 104-0003 047 03-17-2026 STR SPB NO 2 BB PM, CO, SO2 & RATA ADR",
-      "file_path": "documents/6298_104-0003_047_03-17-2026_STR_SPB_NO_2_BB_PM__CO__SO2___RATA_ADR.pdf",
-      "sha256_prefix": "97328be723a50e33",
-      "n_pages": 10,
-      "size_bytes": 413715,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868174&dbid=0",
-      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
-      "text_matches": [],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "BROADWAY GROUP LLC THE",
+      "sites": 535,
+      "inspected": 408,
+      "cited_problem": 313,
+      "enforced": 45,
+      "unenforced_gap": 282
     },
     {
-      "date": "2026-03-16",
-      "type": "CORS",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105868172",
-      "file_name": "6298 104-0003 047 03-16-2026 CORS SPB 3RD ANN NO 2 BB PSD RPT ADR",
-      "file_path": "documents/6298_104-0003_047_03-16-2026_CORS_SPB_3RD_ANN_NO_2_BB_PSD_RPT_ADR.pdf",
-      "sha256_prefix": "3dbc32a89695572c",
-      "n_pages": 1,
-      "size_bytes": 482897,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868172&dbid=0",
-      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) March 16, 2026",
-      "text_matches": [
-        "6298",
-        "Selma",
-        "Riverdale",
-        "104-0003"
-      ],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "DR HORTON INC",
+      "sites": 506,
+      "inspected": 321,
+      "cited_problem": 220,
+      "enforced": 99,
+      "unenforced_gap": 150
     },
     {
-      "date": "2026-03-16",
-      "type": "T5ACC",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105868173",
-      "file_name": "6298 104-0003 047 03-16-2026 T5ACC SPB 2025 ACC ADR",
-      "file_path": "documents/6298_104-0003_047_03-16-2026_T5ACC_SPB_2025_ACC_ADR.pdf",
-      "sha256_prefix": "f542a063396e35ab",
-      "n_pages": 1,
-      "size_bytes": 484015,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105868173&dbid=0",
-      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) March 16, 2026",
-      "text_matches": [
-        "6298",
-        "Selma",
-        "Riverdale",
-        "104-0003"
-      ],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "MOBILE COUNTY COMMISSION",
+      "sites": 187,
+      "inspected": 135,
+      "cited_problem": 47,
+      "enforced": 28,
+      "unenforced_gap": 39
     },
     {
-      "date": "2026-03-12",
-      "type": "MACT",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105877361",
-      "file_name": "6298 104-0003 047 03-12-2026 MACT MOG 1Q2026 COND TEST RPT",
-      "file_path": "documents/6298_104-0003_047_03-12-2026_MACT_MOG_1Q2026_COND_TEST_RPT.pdf",
-      "sha256_prefix": "81f4d283e774b34c",
-      "n_pages": 70,
-      "size_bytes": 2016365,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877361&dbid=0",
-      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
-      "text_matches": [],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "BELLSOUTH COMMUNICATIONS INC",
+      "sites": 176,
+      "inspected": 23,
+      "cited_problem": 19,
+      "enforced": 1,
+      "unenforced_gap": 18
     },
     {
-      "date": "2026-03-06",
-      "type": "CORR",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105864398",
-      "file_name": "6298 104-0003 047 03-06-2026 CORR SPB INVENTORY QUESTIONS",
-      "file_path": "documents/6298_104-0003_047_03-06-2026_CORR_SPB_INVENTORY_QUESTIONS.pdf",
-      "sha256_prefix": "d923f9599452e4d2",
-      "n_pages": 2,
-      "size_bytes": 950888,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105864398&dbid=0",
-      "text_excerpt": "1 Bissey, Steven From: Frederick Francis <frederick.francis@ipaper.com> Sent: Friday, March 6, 2026 3:11 PM To: Bissey, Steven Cc: Kelly M. Simmons; Shelly Pruden Subject: RE: [External] :Inventory Questions Attachments: Inventory Response (3.5.24) to ADEM.xlsx Answers below, along with attached spr",
-      "text_matches": [
-        "Selma",
-        "Riverdale"
-      ],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "HUNTSVILLE CITY OF",
+      "sites": 140,
+      "inspected": 75,
+      "cited_problem": 50,
+      "enforced": 9,
+      "unenforced_gap": 43
     },
     {
-      "date": "2026-02-26",
-      "type": "MONR",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105877359",
-      "file_name": "6298 104-0003 047 02-26-2026 MONR MOG 3RD BB2 PSD TRACKING RPT",
-      "file_path": "documents/6298_104-0003_047_02-26-2026_MONR_MOG_3RD_BB2_PSD_TRACKING_RPT.pdf",
-      "sha256_prefix": "b100a6818255c7f4",
-      "n_pages": 6,
-      "size_bytes": 412111,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877359&dbid=0",
-      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
-      "text_matches": [],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "ADAMS HOMES LLC",
+      "sites": 111,
+      "inspected": 97,
+      "cited_problem": 68,
+      "enforced": 33,
+      "unenforced_gap": 43
     },
     {
-      "date": "2026-02-26",
-      "type": "T5ACC",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105877360",
-      "file_name": "6298 104-0003 047 02-26-2026 T5ACC MOG 2025 ACC RPT",
-      "file_path": "documents/6298_104-0003_047_02-26-2026_T5ACC_MOG_2025_ACC_RPT.pdf",
-      "sha256_prefix": "d4f49f79c8724e0d",
-      "n_pages": 136,
-      "size_bytes": 5850218,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105877360&dbid=0",
-      "text_excerpt": "(no text extractable; likely image-scanned PDF)",
-      "text_matches": [],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "TENNESSEE VALLEY AUTHORITY",
+      "sites": 95,
+      "inspected": 26,
+      "cited_problem": 21,
+      "enforced": 1,
+      "unenforced_gap": 21
     },
     {
-      "date": "2026-02-24",
-      "type": "CEMS",
-      "permit_number": "104-0003",
-      "laserfiche_docid": "105853632",
-      "file_name": "6298 104-0003 047 02-24-2026 CEMS SPB 4Q2025 EE RPT ADR",
-      "file_path": "documents/6298_104-0003_047_02-24-2026_CEMS_SPB_4Q2025_EE_RPT_ADR.pdf",
-      "sha256_prefix": "9eff4ceb6ab86f0b",
-      "n_pages": 1,
-      "size_bytes": 485054,
-      "url": "http://lf.adem.alabama.gov/weblink/DocView.aspx?id=105853632&dbid=0",
-      "text_excerpt": "Birmingham Branch Decatur Office Coastal Office 110 Vulcan Road 2715 Sandin Road, S.W. 1615 South Broad Street Birmingham, AL 35209-4702 Decatur, AL 35603-1333 Mobile, AL 36605 (205) 942-6168 (256) 353-1713 (251) 405-3400 (205) 941-1603 (FAX) (256) 340-9359 (FAX) (251) 479-2593 (FAX) February 24, 20",
-      "text_matches": [
-        "6298",
-        "Selma",
-        "Riverdale",
-        "104-0003"
-      ],
-      "filename_matches": [
-        "6298",
-        "104-0003"
-      ],
-      "validated": true
+      "company": "BALDWIN COUNTY COMMISSION",
+      "sites": 86,
+      "inspected": 58,
+      "cited_problem": 52,
+      "enforced": 16,
+      "unenforced_gap": 37
+    },
+    {
+      "company": "LENNAR HOMES OF ALABAMA LLC",
+      "sites": 83,
+      "inspected": 35,
+      "cited_problem": 17,
+      "enforced": 9,
+      "unenforced_gap": 14
+    },
+    {
+      "company": "BRASFIELD AND GORRIE LLC",
+      "sites": 66,
+      "inspected": 23,
+      "cited_problem": 16,
+      "enforced": 4,
+      "unenforced_gap": 13
+    },
+    {
+      "company": "SPIRE ALABAMA INC",
+      "sites": 65,
+      "inspected": 8,
+      "cited_problem": 7,
+      "enforced": 1,
+      "unenforced_gap": 6
+    },
+    {
+      "company": "DSLD HOMES GULF COAST LLC",
+      "sites": 64,
+      "inspected": 52,
+      "cited_problem": 39,
+      "enforced": 18,
+      "unenforced_gap": 25
+    },
+    {
+      "company": "U S ARMY",
+      "sites": 63,
+      "inspected": 3,
+      "cited_problem": 1,
+      "enforced": 1,
+      "unenforced_gap": 1
+    },
+    {
+      "company": "GRAYSON CARTER AND SON CONTRACTING INC",
+      "sites": 62,
+      "inspected": 19,
+      "cited_problem": 14,
+      "enforced": 3,
+      "unenforced_gap": 12
+    },
+    {
+      "company": "TRULAND HOMES LLC",
+      "sites": 61,
+      "inspected": 52,
+      "cited_problem": 45,
+      "enforced": 12,
+      "unenforced_gap": 34
+    },
+    {
+      "company": "MOBILE CITY OF",
+      "sites": 57,
+      "inspected": 28,
+      "cited_problem": 7,
+      "enforced": 4,
+      "unenforced_gap": 6
+    },
+    {
+      "company": "AUBURN UNIVERSITY",
+      "sites": 53,
+      "inspected": 16,
+      "cited_problem": 4,
+      "enforced": 5,
+      "unenforced_gap": 4
+    },
+    {
+      "company": "LEGACY NEW HOMES LLC",
+      "sites": 50,
+      "inspected": 13,
+      "cited_problem": 0,
+      "enforced": 4,
+      "unenforced_gap": 0
     }
   ],
-  "captured_from": "https://app.adem.alabama.gov/eFile/Default.aspx",
-  "captured_at_utc": "2026-04-27T00:00:00Z",
-  "capture_method": "permit=104-0003 search on eFile + browser-side fetch on lf.adem.alabama.gov ElectronicFile.aspx; PDFs parsed with pypdf and verified to contain Riverdale identifier in filename and/or first 10 pages of text",
-  "validation": {
-    "all_validated": true,
-    "n_text_matches": 5,
-    "n_filename_matches": 10,
-    "n_documents": 10,
-    "target_identifiers": [
-      "INTERNATIONAL PAPER",
-      "6298",
-      "DALLAS",
-      "Selma",
-      "SELMA",
-      "RIVERDALE",
-      "Riverdale",
-      "104-0003"
-    ]
+  "top_builders_by_unenforced_violations": [
+    {
+      "company": "BROADWAY GROUP LLC THE",
+      "sites": 535,
+      "inspected": 408,
+      "cited_problem": 313,
+      "enforced": 45,
+      "unenforced_gap": 282
+    },
+    {
+      "company": "DR HORTON INC",
+      "sites": 506,
+      "inspected": 321,
+      "cited_problem": 220,
+      "enforced": 99,
+      "unenforced_gap": 150
+    },
+    {
+      "company": "ALABAMA DEPARTMENT OF TRANSPORTATION",
+      "sites": 924,
+      "inspected": 180,
+      "cited_problem": 119,
+      "enforced": 23,
+      "unenforced_gap": 109
+    },
+    {
+      "company": "ALABAMA POWER COMPANY",
+      "sites": 631,
+      "inspected": 73,
+      "cited_problem": 57,
+      "enforced": 8,
+      "unenforced_gap": 51
+    },
+    {
+      "company": "ADAMS HOMES LLC",
+      "sites": 111,
+      "inspected": 97,
+      "cited_problem": 68,
+      "enforced": 33,
+      "unenforced_gap": 43
+    },
+    {
+      "company": "HUNTSVILLE CITY OF",
+      "sites": 140,
+      "inspected": 75,
+      "cited_problem": 50,
+      "enforced": 9,
+      "unenforced_gap": 43
+    },
+    {
+      "company": "MOBILE COUNTY COMMISSION",
+      "sites": 187,
+      "inspected": 135,
+      "cited_problem": 47,
+      "enforced": 28,
+      "unenforced_gap": 39
+    },
+    {
+      "company": "BALDWIN COUNTY COMMISSION",
+      "sites": 86,
+      "inspected": 58,
+      "cited_problem": 52,
+      "enforced": 16,
+      "unenforced_gap": 37
+    },
+    {
+      "company": "TRULAND HOMES LLC",
+      "sites": 61,
+      "inspected": 52,
+      "cited_problem": 45,
+      "enforced": 12,
+      "unenforced_gap": 34
+    },
+    {
+      "company": "DSLD HOMES GULF COAST LLC",
+      "sites": 64,
+      "inspected": 52,
+      "cited_problem": 39,
+      "enforced": 18,
+      "unenforced_gap": 25
+    },
+    {
+      "company": "TENNESSEE VALLEY AUTHORITY",
+      "sites": 95,
+      "inspected": 26,
+      "cited_problem": 21,
+      "enforced": 1,
+      "unenforced_gap": 21
+    },
+    {
+      "company": "BELLSOUTH COMMUNICATIONS INC",
+      "sites": 176,
+      "inspected": 23,
+      "cited_problem": 19,
+      "enforced": 1,
+      "unenforced_gap": 18
+    },
+    {
+      "company": "BIRMINGHAM CITY OF",
+      "sites": 42,
+      "inspected": 24,
+      "cited_problem": 23,
+      "enforced": 5,
+      "unenforced_gap": 18
+    },
+    {
+      "company": "MCDONALDS USA LLC",
+      "sites": 33,
+      "inspected": 27,
+      "cited_problem": 18,
+      "enforced": 4,
+      "unenforced_gap": 17
+    },
+    {
+      "company": "ATHENS CITY OF",
+      "sites": 37,
+      "inspected": 28,
+      "cited_problem": 21,
+      "enforced": 6,
+      "unenforced_gap": 17
+    },
+    {
+      "company": "BALDWIN COUNTY BOARD OF EDUCATION",
+      "sites": 30,
+      "inspected": 26,
+      "cited_problem": 24,
+      "enforced": 7,
+      "unenforced_gap": 17
+    },
+    {
+      "company": "XXX",
+      "sites": 39,
+      "inspected": 33,
+      "cited_problem": 24,
+      "enforced": 13,
+      "unenforced_gap": 16
+    },
+    {
+      "company": "FAIRHOPE CITY OF",
+      "sites": 18,
+      "inspected": 16,
+      "cited_problem": 16,
+      "enforced": 1,
+      "unenforced_gap": 15
+    },
+    {
+      "company": "JEFFERSON COUNTY COMMISSION",
+      "sites": 41,
+      "inspected": 19,
+      "cited_problem": 17,
+      "enforced": 2,
+      "unenforced_gap": 15
+    },
+    {
+      "company": "MADISON COUNTY COMMISSION",
+      "sites": 45,
+      "inspected": 22,
+      "cited_problem": 18,
+      "enforced": 5,
+      "unenforced_gap": 15
+    }
+  ],
+  "bmp_category_counts": {
+    "silt_fence": 2037,
+    "inlet_protection": 1403,
+    "gravel_entrance": 784,
+    "vegetation": 2326,
+    "general_bmp": 7575
+  },
+  "regional": {
+    "mobile_bay_watershed": {
+      "counties": [
+        "MOBILE",
+        "BALDWIN"
+      ],
+      "sites_started": 4223,
+      "sites_inspected": 3191,
+      "sites_with_cited_problem": 2173,
+      "sites_enforced": 794,
+      "sites_unenforced_gap": 1594,
+      "top_builders_by_sites": [
+        {
+          "company": "DR HORTON INC",
+          "sites": 218,
+          "inspected": 170,
+          "cited_problem": 123,
+          "enforced": 46,
+          "unenforced_gap": 91
+        },
+        {
+          "company": "MOBILE COUNTY COMMISSION",
+          "sites": 186,
+          "inspected": 134,
+          "cited_problem": 47,
+          "enforced": 28,
+          "unenforced_gap": 39
+        },
+        {
+          "company": "BALDWIN COUNTY COMMISSION",
+          "sites": 86,
+          "inspected": 58,
+          "cited_problem": 52,
+          "enforced": 16,
+          "unenforced_gap": 37
+        },
+        {
+          "company": "BROADWAY GROUP LLC THE",
+          "sites": 83,
+          "inspected": 78,
+          "cited_problem": 52,
+          "enforced": 7,
+          "unenforced_gap": 47
+        },
+        {
+          "company": "ALABAMA DEPARTMENT OF TRANSPORTATION",
+          "sites": 67,
+          "inspected": 27,
+          "cited_problem": 13,
+          "enforced": 3,
+          "unenforced_gap": 13
+        },
+        {
+          "company": "ALABAMA POWER COMPANY",
+          "sites": 62,
+          "inspected": 8,
+          "cited_problem": 6,
+          "enforced": 0,
+          "unenforced_gap": 6
+        },
+        {
+          "company": "ADAMS HOMES LLC",
+          "sites": 61,
+          "inspected": 60,
+          "cited_problem": 39,
+          "enforced": 14,
+          "unenforced_gap": 30
+        },
+        {
+          "company": "TRULAND HOMES LLC",
+          "sites": 61,
+          "inspected": 52,
+          "cited_problem": 45,
+          "enforced": 12,
+          "unenforced_gap": 34
+        },
+        {
+          "company": "MOBILE CITY OF",
+          "sites": 57,
+          "inspected": 28,
+          "cited_problem": 7,
+          "enforced": 4,
+          "unenforced_gap": 6
+        },
+        {
+          "company": "DSLD HOMES GULF COAST LLC",
+          "sites": 37,
+          "inspected": 35,
+          "cited_problem": 33,
+          "enforced": 13,
+          "unenforced_gap": 20
+        },
+        {
+          "company": "BALDWIN COUNTY BOARD OF EDUCATION",
+          "sites": 30,
+          "inspected": 26,
+          "cited_problem": 24,
+          "enforced": 7,
+          "unenforced_gap": 17
+        },
+        {
+          "company": "FOLEY CITY OF",
+          "sites": 28,
+          "inspected": 19,
+          "cited_problem": 12,
+          "enforced": 3,
+          "unenforced_gap": 9
+        },
+        {
+          "company": "COLONY HOMES LLC",
+          "sites": 27,
+          "inspected": 23,
+          "cited_problem": 20,
+          "enforced": 10,
+          "unenforced_gap": 10
+        },
+        {
+          "company": "UNIVERSITY OF SOUTH ALABAMA",
+          "sites": 23,
+          "inspected": 17,
+          "cited_problem": 5,
+          "enforced": 0,
+          "unenforced_gap": 5
+        },
+        {
+          "company": "LENNAR HOMES OF ALABAMA LLC",
+          "sites": 21,
+          "inspected": 20,
+          "cited_problem": 13,
+          "enforced": 5,
+          "unenforced_gap": 11
+        }
+      ],
+      "top_builders_by_unenforced": [
+        {
+          "company": "DR HORTON INC",
+          "sites": 218,
+          "inspected": 170,
+          "cited_problem": 123,
+          "enforced": 46,
+          "unenforced_gap": 91
+        },
+        {
+          "company": "BROADWAY GROUP LLC THE",
+          "sites": 83,
+          "inspected": 78,
+          "cited_problem": 52,
+          "enforced": 7,
+          "unenforced_gap": 47
+        },
+        {
+          "company": "MOBILE COUNTY COMMISSION",
+          "sites": 186,
+          "inspected": 134,
+          "cited_problem": 47,
+          "enforced": 28,
+          "unenforced_gap": 39
+        },
+        {
+          "company": "BALDWIN COUNTY COMMISSION",
+          "sites": 86,
+          "inspected": 58,
+          "cited_problem": 52,
+          "enforced": 16,
+          "unenforced_gap": 37
+        },
+        {
+          "company": "TRULAND HOMES LLC",
+          "sites": 61,
+          "inspected": 52,
+          "cited_problem": 45,
+          "enforced": 12,
+          "unenforced_gap": 34
+        },
+        {
+          "company": "ADAMS HOMES LLC",
+          "sites": 61,
+          "inspected": 60,
+          "cited_problem": 39,
+          "enforced": 14,
+          "unenforced_gap": 30
+        },
+        {
+          "company": "DSLD HOMES GULF COAST LLC",
+          "sites": 37,
+          "inspected": 35,
+          "cited_problem": 33,
+          "enforced": 13,
+          "unenforced_gap": 20
+        },
+        {
+          "company": "BALDWIN COUNTY BOARD OF EDUCATION",
+          "sites": 30,
+          "inspected": 26,
+          "cited_problem": 24,
+          "enforced": 7,
+          "unenforced_gap": 17
+        },
+        {
+          "company": "FAIRHOPE CITY OF",
+          "sites": 18,
+          "inspected": 16,
+          "cited_problem": 16,
+          "enforced": 1,
+          "unenforced_gap": 15
+        },
+        {
+          "company": "DAPHNE CITY OF",
+          "sites": 20,
+          "inspected": 17,
+          "cited_problem": 16,
+          "enforced": 2,
+          "unenforced_gap": 14
+        },
+        {
+          "company": "ALABAMA DEPARTMENT OF TRANSPORTATION",
+          "sites": 67,
+          "inspected": 27,
+          "cited_problem": 13,
+          "enforced": 3,
+          "unenforced_gap": 13
+        },
+        {
+          "company": "LENNAR HOMES OF ALABAMA LLC",
+          "sites": 21,
+          "inspected": 20,
+          "cited_problem": 13,
+          "enforced": 5,
+          "unenforced_gap": 11
+        },
+        {
+          "company": "MARONDA HOMES LLC OF ALABAMA",
+          "sites": 15,
+          "inspected": 13,
+          "cited_problem": 11,
+          "enforced": 0,
+          "unenforced_gap": 11
+        },
+        {
+          "company": "COLONY HOMES LLC",
+          "sites": 27,
+          "inspected": 23,
+          "cited_problem": 20,
+          "enforced": 10,
+          "unenforced_gap": 10
+        },
+        {
+          "company": "TRULAND HOMES INC",
+          "sites": 20,
+          "inspected": 19,
+          "cited_problem": 17,
+          "enforced": 9,
+          "unenforced_gap": 10
+        }
+      ]
+    }
+  },
+  "captured_from": "https://app.adem.alabama.gov/eFile/",
+  "document_archive": "https://lf.adem.alabama.gov/WebLink/",
+  "captured_at_utc": "2026-04-28T13:45:05Z",
+  "capture_method": "pure-HTTP ASP.NET WebForms postback pagination + parallel multi-format text extraction (PDF via LiteParse, .pptx/.docx via direct Python parsers, legacy CFB via LibreOffice round-trip)",
+  "documents_processed": {
+    "total_eFile_documents": 123424,
+    "inspr_documents_extracted": 33205,
+    "inspr_documents_unreachable": 121
   }
 }

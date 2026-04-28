@@ -1,10 +1,63 @@
 {
   "schema_version": "1",
   "predicates": [
-    {"path": "$.facility.name", "type": "string", "min_length": 5, "max_length": 200},
-    {"path": "$.facility.adem_master_id", "type": "string", "regex": "^[0-9]{4,8}$"},
-    {"path": "$.facility.location.county", "type": "string",
-     "in_set": [
+    {"path": "$", "type": "object",
+     "key_set_includes": ["analysis","scope","totals","yearly_trend","top_builders_by_sites","top_builders_by_unenforced_violations","bmp_category_counts","regional","captured_from","document_archive","captured_at_utc","capture_method","documents_processed"]},
+
+    {"path": "$.analysis", "type": "string", "min_length": 10, "max_length": 200},
+
+    {"path": "$.scope.permit_prefix", "type": "string", "in_set": ["ALR10"]},
+    {"path": "$.scope.media_area", "type": "string", "in_set": ["Air","Water","Land","Multi"]},
+    {"path": "$.scope.date_start", "type": "string", "regex": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    {"path": "$.scope.date_end", "type": "string", "regex": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    {"path": "$.scope.years_covered", "type": "int", "in_range": [1, 50]},
+    {"path": "$.scope", "type": "object",
+     "key_set_includes": ["permit_prefix","media_area","date_start","date_end","years_covered"]},
+
+    {"path": "$.totals", "type": "object",
+     "key_set_includes": ["sites_started","sites_inspected","sites_with_cited_problem","sites_enforced","sites_unenforced_gap","inspections_processed","inspections_with_cited_problem"]},
+    {"path": "$.totals.sites_started", "type": "int", "in_range": [100, 1000000]},
+    {"path": "$.totals.sites_inspected", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.totals.sites_with_cited_problem", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.totals.sites_enforced", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.totals.sites_unenforced_gap", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.totals.inspections_processed", "type": "int", "in_range": [100, 10000000]},
+    {"path": "$.totals.inspections_with_cited_problem", "type": "int", "in_range": [0, 10000000]},
+
+    {"path": "$.yearly_trend", "type": "list", "min_size": 5, "max_size": 30},
+    {"path": "$.yearly_trend[*].year", "type": "int", "in_range": [2009, 2030], "for_all": true},
+    {"path": "$.yearly_trend[*].sites_started", "type": "int", "in_range": [0, 100000], "for_all": true},
+    {"path": "$.yearly_trend[*].sites_inspected", "type": "int", "in_range": [0, 100000], "for_all": true},
+    {"path": "$.yearly_trend[*].sites_cited_problem", "type": "int", "in_range": [0, 100000], "for_all": true},
+    {"path": "$.yearly_trend[*].sites_enforced", "type": "int", "in_range": [0, 100000], "for_all": true},
+    {"path": "$.yearly_trend[*].pct_inspected", "type": "float", "in_range": [0, 100], "for_all": true},
+    {"path": "$.yearly_trend[*].pct_enforced", "type": "float", "in_range": [0, 100], "for_all": true},
+
+    {"path": "$.top_builders_by_sites", "type": "list", "min_size": 5, "max_size": 50},
+    {"path": "$.top_builders_by_sites[*].company", "type": "string", "min_length": 2, "for_all": true},
+    {"path": "$.top_builders_by_sites[*].sites", "type": "int", "in_range": [1, 1000000], "for_all": true},
+    {"path": "$.top_builders_by_sites[*].inspected", "type": "int", "in_range": [0, 1000000], "for_all": true},
+    {"path": "$.top_builders_by_sites[*].cited_problem", "type": "int", "in_range": [0, 1000000], "for_all": true},
+    {"path": "$.top_builders_by_sites[*].enforced", "type": "int", "in_range": [0, 1000000], "for_all": true},
+    {"path": "$.top_builders_by_sites[*].unenforced_gap", "type": "int", "in_range": [0, 1000000], "for_all": true},
+
+    {"path": "$.top_builders_by_unenforced_violations", "type": "list", "min_size": 1, "max_size": 50},
+    {"path": "$.top_builders_by_unenforced_violations[*].company", "type": "string", "min_length": 2, "for_all": true},
+    {"path": "$.top_builders_by_unenforced_violations[*].unenforced_gap", "type": "int", "in_range": [1, 1000000], "for_all": true},
+
+    {"path": "$.bmp_category_counts", "type": "object",
+     "key_set_includes": ["silt_fence","inlet_protection","gravel_entrance","vegetation","general_bmp"]},
+    {"path": "$.bmp_category_counts.silt_fence", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.bmp_category_counts.inlet_protection", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.bmp_category_counts.gravel_entrance", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.bmp_category_counts.vegetation", "type": "int", "in_range": [0, 1000000]},
+    {"path": "$.bmp_category_counts.general_bmp", "type": "int", "in_range": [0, 1000000]},
+
+    {"path": "$.regional", "type": "object", "key_set_includes": ["mobile_bay_watershed"]},
+    {"path": "$.regional.mobile_bay_watershed", "type": "object",
+     "key_set_includes": ["counties","sites_started","sites_inspected","sites_with_cited_problem","sites_enforced","sites_unenforced_gap","top_builders_by_sites","top_builders_by_unenforced"]},
+    {"path": "$.regional.mobile_bay_watershed.counties", "type": "list", "min_size": 1, "max_size": 67},
+    {"path": "$.regional.mobile_bay_watershed.counties[*]", "type": "string", "in_set": [
        "AUTAUGA","BALDWIN","BARBOUR","BIBB","BLOUNT","BULLOCK","BUTLER","CALHOUN",
        "CHAMBERS","CHEROKEE","CHILTON","CHOCTAW","CLARKE","CLAY","CLEBURNE","COFFEE",
        "COLBERT","CONECUH","COOSA","COVINGTON","CRENSHAW","CULLMAN","DALE","DALLAS",
@@ -14,38 +67,18 @@
        "MOBILE","MONROE","MONTGOMERY","MORGAN","PERRY","PICKENS","PIKE","RANDOLPH",
        "RUSSELL","SHELBY","ST. CLAIR","SUMTER","TALLADEGA","TALLAPOOSA","TUSCALOOSA",
        "WALKER","WASHINGTON","WILCOX","WINSTON"
-     ]},
-    {"path": "$.facility.location.state", "type": "string", "in_set": ["AL"]},
-    {"path": "$.facility.primary_media", "type": "string",
-     "in_set": ["Air", "Water", "Land", "Multi"]},
-    {"path": "$.facility", "type": "object",
-     "key_set_includes": ["name", "adem_master_id", "location", "operator", "primary_media"]},
+     ], "for_all": true},
+    {"path": "$.regional.mobile_bay_watershed.sites_started", "type": "int", "in_range": [1, 1000000]},
 
-    {"path": "$.permits", "type": "list", "min_size": 1, "max_size": 50},
-    {"path": "$.permits[*].permit_number", "type": "string", "min_length": 3, "for_all": true},
+    {"path": "$.captured_from", "type": "string", "regex": "^https://app\\.adem\\.alabama\\.gov/eFile/"},
+    {"path": "$.document_archive", "type": "string", "regex": "^https://lf\\.adem\\.alabama\\.gov/WebLink/"},
+    {"path": "$.captured_at_utc", "type": "string", "regex": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.*Z?$"},
+    {"path": "$.capture_method", "type": "string", "min_length": 20},
 
-    {"path": "$.recent_documents", "type": "list", "min_size": 1, "max_size": 200},
-    {"path": "$.recent_documents[*].laserfiche_docid", "type": "string", "regex": "^[0-9]{8,12}$", "for_all": true},
-    {"path": "$.recent_documents[*].file_path", "type": "string", "regex": "^documents/.*\\.pdf$", "for_all": true},
-    {"path": "$.recent_documents[*].size_bytes", "type": "int", "in_range": [10000, 100000000], "for_all": true},
-    {"path": "$.recent_documents[*].n_pages", "type": "int", "in_range": [1, 1000], "for_all": true},
-    {"path": "$.recent_documents[*].sha256_prefix", "type": "string", "regex": "^[0-9a-f]{16}$", "for_all": true},
-    {"path": "$.recent_documents[*].date", "type": "string",
-     "regex": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "for_all": true},
-    {"path": "$.recent_documents[*].url", "type": "string",
-     "regex": "^http://lf\\.adem\\.alabama\\.gov/weblink/DocView\\.aspx", "for_all": true},
-    {"path": "$.recent_documents[*].validated", "type": "bool", "in_set": [true], "for_all": true},
-
-    {"path": "$.validation.all_validated", "type": "bool", "in_set": [true]},
-    {"path": "$.validation.n_documents", "type": "int", "in_range": [1, 200]},
-    {"path": "$.validation.target_identifiers", "type": "list", "min_size": 3, "max_size": 20},
-    {"path": "$.validation", "type": "object",
-     "key_set_includes": ["all_validated", "n_documents", "target_identifiers"]},
-
-    {"path": "$.captured_from", "type": "string",
-     "regex": "^https://app\\.adem\\.alabama\\.gov/eFile/"},
-
-    {"path": "$", "type": "object",
-     "key_set_includes": ["facility", "permits", "recent_documents", "captured_from", "captured_at_utc", "capture_method", "validation"]}
+    {"path": "$.documents_processed", "type": "object",
+     "key_set_includes": ["total_eFile_documents","inspr_documents_extracted","inspr_documents_unreachable"]},
+    {"path": "$.documents_processed.total_eFile_documents", "type": "int", "in_range": [1, 100000000]},
+    {"path": "$.documents_processed.inspr_documents_extracted", "type": "int", "in_range": [1, 100000000]},
+    {"path": "$.documents_processed.inspr_documents_unreachable", "type": "int", "in_range": [0, 100000000]}
   ]
 }
